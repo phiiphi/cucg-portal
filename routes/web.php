@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+# Pages Route
+Route::get('/', 'PagesController@welcome')->name('pages.welcome');
+Route::get('/signup', 'PagesController@signup')->name('pages.signup');

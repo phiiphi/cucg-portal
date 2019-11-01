@@ -1,0 +1,71 @@
+/***********************8
+MAIN CONTENT
+------------------------
+1. Welcome Page Style
+2. navbar
+3. signUp
+***********************/
+
+/*************
+1. Welcome Page
+
+***************/
+html,
+body {
+    background-color: #f3f3f3;
+    font-family: "Nunito", sans-serif;
+    height: 60vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 60vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.title {
+    font-size: 24px;
+    /* margin-top: 160px; */
+}
+
+
+/*************
+1. Navbar
+
+***************/
+nav {
+    background-color: #ffffff;
+    position: fixed;
+}
+
+.navbrand {
+    padding-left: 50px;
+}
+
+/*************
+3. SignUp
+
+***************/
+#signup {
+    margin-top: 50px;
+}
