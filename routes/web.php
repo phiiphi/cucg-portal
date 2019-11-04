@@ -14,3 +14,4 @@
 # Pages Route
 Route::get('/', 'PagesController@welcome')->name('pages.welcome');
 Route::get('/signup', 'PagesController@signup')->name('pages.signup');
+Route::get('/login', 'PagesController@login')->name('pages.login');

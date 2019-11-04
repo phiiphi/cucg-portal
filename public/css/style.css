@@ -16,7 +16,10 @@ body {
     font-family: "Nunito", sans-serif;
     height: 60vh;
     margin: 0;
+    background-image: url("//images/mining-excavator-1736289_960_720.jpg");
+
 }
+
 
 .full-height {
     height: 60vh;
@@ -54,8 +57,10 @@ body {
 
 ***************/
 nav {
-    background-color: #ffffff;
+    background-color: #312D40;
     position: fixed;
+
+
 }
 
 .navbrand {
@@ -68,4 +73,10 @@ nav {
 ***************/
 #signup {
     margin-top: 50px;
+}
+
+#login {
+    margin-top: 80px;
+
+
 }

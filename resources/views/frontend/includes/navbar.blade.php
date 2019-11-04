@@ -1,5 +1,5 @@
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark shadow-sm fixed-top">
-  <a class="navbar-brand text-dark navbrand" href="{{route('pages.welcome')}}">
+  <a class="navbar-brand text-white navbrand" href="{{route('pages.welcome')}}">
   CUCG STUDENT PORTAL
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
@@ -11,11 +11,11 @@
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
-        <a class="nav-link text-dark" href="#">LOGIN</a>
+        <a class="nav-link text-white" href="{{route('pages.login')}}">LOGIN</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{route('pages.signup')}}">SIGNUP</a>
+        <a class="nav-link text-white" href="{{route('pages.signup')}}">SIGNUP</a>
       </li>
     </ul>
   </div>

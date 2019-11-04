@@ -17,4 +17,8 @@ class PagesController extends Controller
     {
         return view('frontend.pages.signup');
     }
+    public function login()
+    {
+        return view('frontend.pages.login');
+    }
 }
