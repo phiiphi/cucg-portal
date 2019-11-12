@@ -16,13 +16,12 @@ body {
     font-family: "Nunito", sans-serif;
     height: 60vh;
     margin: 0;
-    background-image: url("//images/mining-excavator-1736289_960_720.jpg");
 
 }
 
-
 .full-height {
     height: 60vh;
+
 }
 
 .flex-center {
@@ -50,6 +49,7 @@ body {
     font-size: 24px;
     /* margin-top: 160px; */
 }
+
 
 
 /*************

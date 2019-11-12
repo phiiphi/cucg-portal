@@ -7,7 +7,7 @@
                 <div class="card-header">LOGIN</div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
+                <form method="post" action="{{route('pages.loginstore')}}">
                         @csrf
                         {{--INDEX NUMBER--}}
                         <div class="form-group row">

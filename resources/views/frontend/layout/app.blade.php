@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Cucg Student Portal') }}</title>
+    <title>{{ config('app.name', 'Students Portal') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -28,7 +28,7 @@
         {{-- NAVBAR --}}
         @include('frontend.includes.navbar')
 
-            <div class="container mt-5">
+            <div class="container mt-5" style="background: url('/public/images/mining.jpg')">
 
                 {{--MAIN CONTENT--}}
                 @yield('content')
