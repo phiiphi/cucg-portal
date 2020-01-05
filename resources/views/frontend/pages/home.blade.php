@@ -28,8 +28,8 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading text-white">
-    menu
+      <div class="sidebar-heading text-white text-warning">
+        Student Activity Menu
       </div>
 
       <!-- Divider -->
@@ -69,13 +69,22 @@
         </a>
       </li>
 
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <span class="text-uppercase text-white">Announcement</span>
+        </a>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+    
 
       <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
+      {{-- <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
+      </div> --}}
 
     </ul>
     <!-- End of Sidebar -->
@@ -283,56 +292,72 @@
 
             <!-- Content Column -->
             <div class="col-lg-8 mb-4">
-
-              <!-- Color System -->
               <div class="row">
                 <div class="col-lg-6 mb-4">
-                  <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
-                      Primary
-                      <div class="text-white-50 small">#4e73df</div>
+                  <div class="card shadow">
+                    <div class="inner">
+                      <img class="card-img-top" src="{{asset('images/girl.jpg')}}" alt="card image top">
+                    </div>
+                    <div class="card-body bg-success ">
+                      <h5 class="card-title text-light"> Register Semester Courses</h5>
+                      <a href="#" class="btn btn-outline-light">Register Now</a>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <div class="card bg-success text-white shadow">
-                    <div class="card-body">
-                      Success
-                      <div class="text-white-50 small">#1cc88a</div>
-                    </div>
-                  </div>
+                    <div class="card shadow">
+                      <div class="inner">
+                        <img class="card-img-top" src="{{asset('images/mining.jpg')}}" alt="card image top">
+                      </div>
+                          <div class="card-body bg-primary">
+                            <h5 class="card-title text-light"> Check Results</h5>
+                            <a href="#" class="btn btn-outline-light">Check Now</a>
+                          </div>
+                      </div>
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                      Info
-                      <div class="text-white-50 small">#36b9cc</div>
+                  <div class="card shadow">
+                    <div class="inner">
+                      <img class="card-img-top" src="{{asset('images/mining.jpg')}}" alt="card image top">
                     </div>
-                  </div>
+                        <div class="card-body bg-info">
+                          <h5 class="card-title text-light"> Check Semester Timetable</h5>
+                          <a href="#" class="btn btn-outline-light">Check Now</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <div class="card bg-warning text-white shadow">
-                    <div class="card-body">
-                      Warning
-                      <div class="text-white-50 small">#f6c23e</div>
+                  <div class="card shadow">
+                    <div class="inner">
+                      <img class="card-img-top" src="{{asset('images/girl.jpg')}}" alt="card image top">
                     </div>
-                  </div>
+                        <div class="card-body bg-warning">
+                          <h5 class="card-title text-light"> View Semester Calander</h5>
+                          <a href="#" class="btn btn-outline-light">View Now</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <div class="card bg-danger text-white shadow">
-                    <div class="card-body">
-                      Danger
-                      <div class="text-white-50 small">#e74a3b</div>
+                  <div class="card shadow">
+                    <div class="inner">
+                      <img class="card-img-top" src="{{asset('images/girl.jpg')}}" alt="card image top">
                     </div>
-                  </div>
+                        <div class="card-body bg-danger">
+                          <h5 class="card-title text-light"> Student Forms</h5>
+                          <a href="#" class="btn btn-outline-light">Apply Now</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 mb-4">
-                  <div class="card bg-secondary text-white shadow">
-                    <div class="card-body">
-                      Secondary
-                      <div class="text-white-50 small">#858796</div>
+                  <div class="card shadow">
+                    <div class="inner">
+                      <img class="card-img-top" src="{{asset('images/mining.jpg')}}" alt="card image top">
                     </div>
-                  </div>
+                        <div class="card-body bg-secondary">
+                          <h5 class="card-title text-light"> Announcement</h5>
+                          <a href="#" class="btn btn-outline-light">Check Now</a>
+                        </div>
+                    </div>
                 </div>
               </div>
 
@@ -340,10 +365,10 @@
 
             <div class="col-lg-4 mb-4">
 
-              <!-- Announcement-->
+              <!--Todays Announcement-->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Latest Announcement</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Today's Announcement</h6>
                 </div>
                 <div class="card-body">
                   <div class="text-center">
@@ -355,6 +380,22 @@
                   <a rel="nofollow" href="#">SEE MORE &rarr;</a>
                 </div>
               </div>
+
+            <!-- Older Announcement-->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Older Announcement</h6>
+              </div>
+              <div class="card-body">
+                <div class="text-center">
+                  <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                </div>
+                <p>
+                  Add some quality, svg illustrations to your project courtesy of , a constantly updated collection of beautiful svg images that you can use completely free and without attribution!
+              </p>
+                <a rel="nofollow" href="#">SEE MORE &rarr;</a>
+              </div>
+            </div>              
             </div>
           </div>
 
