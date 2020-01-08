@@ -18,16 +18,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home_style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/courseRegistration_style.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
     {{-- PRE-LOADER--}}
     {{-- @include('frontend.includes.preloader') --}}
 
-    {{-- NAVBAR --}}
-    {{-- @include('frontend.includes.home_nav') --}}
-
+    {{--     NAVBAR --}}
+        @include('frontend.includes.course_nav')
     <div class="container-fluid">
 
         {{--MAIN CONTENT--}}

@@ -4,7 +4,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-8" id="personalInfo">
             <div class="card">
-                <div class="card-header">ACADEMIC INFORMATION</div>
+                <div class="card-header" id="wrapper1">ACADEMIC INFORMATION</div>
 
                 {{--FACULTY--}}
                 <div class="form-group row">
