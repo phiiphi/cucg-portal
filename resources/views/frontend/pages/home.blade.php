@@ -37,7 +37,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link"  href="{{route('pages.courseRegistration.forms.personalInfo')}}">
+        <a class="nav-link"  href="{{route('courseRegistration.forms.personalInfo')}}">
           <span class="text-uppercase text-white">Register Courses</span>
         </a>
       </li>

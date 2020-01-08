@@ -33,20 +33,7 @@ class PagesController extends Controller
         return view('frontend.pages.home');
     }
 
-    public function personalInfo(){
-        return view('frontend.pages.courseRegistration.forms.personalInfo');
-    }
-    public function registrationDetails(){
-        return view('frontend.pages.courseRegistration.forms.registrationDetails');
-    }
 
-public function academicInfo()
-{
-    return view('frontend.pages.courseRegistration.forms.academicInfo');
-}
-    public function help(){
-        return view('frontend.pages.courseRegistration.help');
-    }
 
 
 
