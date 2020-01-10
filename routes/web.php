@@ -17,3 +17,7 @@ Route::get('/signup', 'PagesController@signup')->name('pages.signup');
 Route::get('/login', 'PagesController@login')->name('pages.login');
 Route::post('/', 'PagesController@loginstore')->name('pages.loginstore');
 Route::get('/home', 'PagesController@home')->name('pages.home');
+Route::get('/academicInfo', 'CourseRegistrationController@academicInfo')->name('courseRegistration.forms.academicInfo');
+Route::get('/personalInfo', 'CourseRegistrationController@personalInfo')->name('courseRegistration.forms.personalInfo');
+
+

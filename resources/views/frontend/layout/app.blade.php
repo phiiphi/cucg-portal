@@ -26,9 +26,9 @@
         {{-- @include('frontend.includes.preloader') --}}
 
         {{-- NAVBAR --}}
-        @include('frontend.includes.navbar')
+        @include('frontend.includes.course_nav')
 
-            <div class="container mt-5" style="background: url('/public/images/mining.jpg')">
+            <div class="container mt-5">
 
                 {{--MAIN CONTENT--}}
                 @yield('content')

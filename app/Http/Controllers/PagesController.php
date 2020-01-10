@@ -34,6 +34,9 @@ class PagesController extends Controller
     }
 
 
+
+
+
     #METHOD FOR VALIDATING,STORING LOGIN DATA INTO THE DATATBASE
     /**
      * Store a newly created resource in storage.
