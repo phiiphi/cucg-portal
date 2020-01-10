@@ -22,6 +22,7 @@
 </head>
 <body>
     <div id="app">
+
         {{-- PRE-LOADER--}}
         {{-- @include('frontend.includes.preloader') --}}
 
@@ -33,10 +34,10 @@
                 {{--MAIN CONTENT--}}
                 @yield('content')
 
-            </div>
-
         {{-- FOOTER --}}
         @include('frontend.includes.footer')
+            </div>
+    
     </div>
 
 

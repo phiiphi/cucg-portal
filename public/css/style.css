@@ -16,7 +16,8 @@ body {
     font-family: "Nunito", sans-serif;
     height: 60vh;
     margin: 0;
-
+    background-image: url(/images/login-register5.jpg);
+    background-repeat: no-repeat;
 }
 
 .full-height {
@@ -50,8 +51,6 @@ body {
     /* margin-top: 160px; */
 }
 
-
-
 /*************
 1. Navbar
 
@@ -77,6 +76,4 @@ nav {
 
 #login {
     margin-top: 80px;
-
-
 }

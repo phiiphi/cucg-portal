@@ -1,5 +1,5 @@
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark shadow-sm fixed-top">
-  <a class="navbar-brand text-white navbrand" href="{{route('pages.welcome')}}">
+  <a class="navbar-brand text-white navbrand" href="{{route('pages.starting')}}">
   CUCG STUDENT PORTAL
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"

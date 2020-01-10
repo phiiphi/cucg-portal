@@ -71,6 +71,22 @@
                         </div>
                     </div>
 
+                    {{--PHONE NUMBER--}}
+                    {{-- <div class="form-group row">
+                        <label for="phone" class="col-md-4 col-form-label text-md-right">Phone Number</label>
+
+                        <div class="col-md-6">
+                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="example: 054XXXXXXX">
+
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div> --}}
+
+                    {{--PASSWORD--}}
                     <div class="form-group row">
                         <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
@@ -90,6 +106,23 @@
 
                         <div class="col-md-6">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="please repeat password">
+                        </div>
+                    </div>
+
+                    {{--COUNTRY--}}
+                    <div class="form-group row">
+                        <label for="country" class="col-md-4 col-form-label text-md-right">Choose Country</label>
+
+                        <div class="col-md-6">
+                            <select name="country" id="faculty">
+                                <option value="Select Your country">Select Your Country</option>
+                                <option value="Ghana">Ghana</option>
+                                <option value="Nigeria">Nigeria</option>
+                                <option value="cote d'ivore">Cote d'ivove</option>
+                                <option value="Togo">Togo</option>
+                                <option value="Benin">Benin</option>
+                        
+                            </select>
                         </div>
                     </div>
 

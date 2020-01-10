@@ -24,7 +24,25 @@
                             </div>
                         </div>
 
+                        {{--FACULTY--}}
+                        <div class="form-group row">
+                            <label for="faculty" class="col-md-4 col-form-label text-md-right">Choose Faculty</label>
 
+                            <div class="col-md-6">
+                                <select name="faculty" id="faculty">
+                                    <option value="Select Your Faculty">Select Your Faculty</option>
+                                    <option value="Information Communication and Technology">Information Communication and Technology</option>
+                                    <option value="Economics and Business Adminstration">Economics and Business Adminstration</option>
+                                    <option value="Health and Allied Science">Health and Allied Science</option>
+                                    <option value="Nursing">Nursing</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Religious Studies">Religious Studies</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        {{--PASSWORD--}}
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 

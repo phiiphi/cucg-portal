@@ -6,12 +6,20 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+    // #WELCOME PAGE METHOD
+    // public function welcome()
+    // {
+    //     $welcome_msg = "Catholic University Student Portal";
+
+    //     return view('frontend.pages.welcome')->with('welcome_msg', $welcome_msg);
+    // }
+
     #WELCOME PAGE METHOD
-    public function welcome()
+    public function starting()
     {
         $welcome_msg = "Catholic University Student Portal";
 
-        return view('frontend.pages.welcome')->with('welcome_msg', $welcome_msg);
+        return view('frontend.pages.starting')->with('welcome_msg', $welcome_msg);
     }
 
     #SIGNUP PAGE METHOD
@@ -32,10 +40,6 @@ class PagesController extends Controller
 
         return view('frontend.pages.home');
     }
-
-
-
-
 
     #METHOD FOR VALIDATING,STORING LOGIN DATA INTO THE DATATBASE
     /**
