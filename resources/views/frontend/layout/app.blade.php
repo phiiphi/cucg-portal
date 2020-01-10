@@ -26,7 +26,7 @@
         {{-- @include('frontend.includes.preloader') --}}
 
         {{-- NAVBAR --}}
-        @include('frontend.includes.course_nav')
+        @include('frontend.includes.navbar')
 
             <div class="container mt-5">
 
