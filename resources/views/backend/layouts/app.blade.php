@@ -45,8 +45,28 @@
     <!--c3chart-->
     <link href="{{ asset('assets/vendor/c3chart/c3.min.css')}}" rel="stylesheet">
 
+     <!--date picker-->
+     <link href="{{ asset('assets/vendor/date-picker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+
+     <!--datetime & time picker-->
+     <link href="{{ asset('assets/vendor/datetime-picker/css/datetimepicker.css')}}" rel="stylesheet">
+     <link href="{{ asset('assets/vendor/timepicker/css/timepicker.css')}}" rel="stylesheet">
+ 
+     <!--color picker-->
+     <link href="{{ asset('assets/vendor/colorpicker/css/bootstrap-colorpicker.css')}}" rel="stylesheet">
+
     <!--custom styles-->
     <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet">
+
+        {{--Full calendar css--}}
+    <link href="{{asset('assets/fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('assets/fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('assets/fullcalendar/packages/timegrid/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('assets/fullcalendar/packages/list/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('assets/fullcalendar/css/back_calendar.css')}}" rel='stylesheet' />
+    
+    <!--data table-->
+    <link href="{{asset('assets/vendor/data-tables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -56,7 +76,8 @@
 </head>
 
 <body class="fixed-nav leftnav-floating">
-
+{{--ALERT MESSAGES--}}
+@include('backend.includes.message')
     {{--NAVBAR--}}
     @include('backend.includes.admin_nav')
 
@@ -74,6 +95,15 @@
 
     {{--RIGHT SIDEBAR--}}
     @include('backend.includes.admin_right_sidebar')
+
+    {{--Full calendar js--}}
+    <script src="{{asset('assets/fullcalendar/js/calendar_script.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/core/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/interaction/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/daygrid/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/timegrid/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/list/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/js/back_calendar.js')}}"></script>
 
     <!--basic scripts-->
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js')}}"></script>
@@ -120,14 +150,36 @@
     <!--vectormap initialization-->
     <script src="{{ asset('assets/vendor/js-init/vmap/init-vmap-world.js')}}"></script>
 
+     <!--date picker-->
+     <script src="{{ asset('assets/vendor/date-picker/js/bootstrap-datepicker.min.js')}}"></script>
+     <!--init date picker-->
+     <script src="{{ asset('assets/vendor/js-init/pickers/init-date-picker.js')}}"></script>
+ 
+     <!--datetime picker-->
+     <script src="{{ asset('assets/vendor/datetime-picker/js/bootstrap-datetimepicker.js')}}"></script>
+     <script src="{{ asset('assets/vendor/timepicker/js/bootstrap-timepicker.js')}}"></script>
+     <!--init datetime picker-->
+     <script src="{{ asset('assets/vendor/js-init/pickers/init-datetime-picker.js')}}"></script>
+ 
+     <!--color picker-->
+     <script src="{{ asset('assets/vendor/colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+     <!--init color picker-->
+     <script src="{{ asset('assets/vendor/js-init/pickers/init-color-picker.js')}}"></script>
+ 
+    <!--datatables-->
+    <script src="{{asset('assets/vendor/data-tables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/data-tables/dataTables.bootstrap4.min.js')}}"></script>
+    <!--init datatable-->
+    <script src="{{asset('assets/vendor/js-init/init-datatable.js')}}"></script>
+
     <!--[if lt IE 9]>
     <script src="assets/vendor/modernizr.js"></script>
     <![endif]-->
 
     <!--basic scripts initialization-->
     <script src="{{ asset('assets/js/scripts.js')}}"></script>
-</body>
 
+</body>
 <!-- Mirrored from thevectorlab.net/dashlab-v1.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Feb 2019 05:38:32 GMT -->
 </html>
 

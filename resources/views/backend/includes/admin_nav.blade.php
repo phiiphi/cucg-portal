@@ -159,8 +159,8 @@
                     </a>
                     <ul class="sidenav-second-level collapse show" id="dashboard" data-parent="#accordion">
                         {{-- <li class="active"> <a href="index.html">Academic Calender</a> </li> --}}
-                        <li> <a href="#">View Calendar</a></li>
-                        <li> <a href="#">Create Calendar</a></li>
+                        <li> <a href="{{route('admin.calendar.index')}}">View Calendar</a></li>
+                        <li> <a href="{{route('admin.calendar.create')}}">Create Calendar</a></li>
                         <li> <a href="#">Edit Calendar</a></li>
                         <li> <a href="#">Delete Calendar</a></li>
                     </ul>

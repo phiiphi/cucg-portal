@@ -14,9 +14,20 @@
     <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+    {{--FullCalendar css --}}
+    <link href="{{asset('assets/fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('assets/fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
+    <link href="{{asset('assets/fullcalendar/css/front_calendar.css')}}" rel='stylesheet' />
+
+    <!--data table-->
+    <link href="{{asset('assets/vendor/data-tables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home_style.css') }}" rel="stylesheet">
+
+    <!--custom styles-->
+    <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -37,6 +48,12 @@
         @include('frontend.includes.footer_home')
     </div>
 
+    {{--FullCalendar js --}}
+    <script src="{{asset('assets/fullcalendar/js/calendar_script.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/core/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/interaction/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/packages/daygrid/main.js')}}"></script>
+    <script src="{{asset('assets/fullcalendar/js/front_calendar.js')}}"></script>
 
     <!--js link-->
     <script src="{{ asset('jquery/jquery.min.js')}}"></script>
@@ -45,5 +62,10 @@
     <script src="{{ asset('js/home_script.js')}}" defer></script>
     <script src="{{ asset('js/chart-area-demo.js')}}" defer></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!--datatables-->
+    <script src="{{asset('assets/vendor/data-tables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/vendor/data-tables/dataTables.bootstrap4.min.js')}}"></script>
+    <!--init datatable-->
+    <script src="{{asset('assets/vendor/js-init/init-datatable.js')}}"></script>
 </body>
 </html>

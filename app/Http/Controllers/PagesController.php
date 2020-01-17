@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicCalendar;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    // #WELCOME PAGE METHOD
-    // public function welcome()
-    // {
-    //     $welcome_msg = "Catholic University Student Portal";
-
-    //     return view('frontend.pages.welcome')->with('welcome_msg', $welcome_msg);
-    // }
-
     #WELCOME PAGE METHOD
     public function starting()
     {
         $welcome_msg = "Catholic University Student Portal";
+
 
         return view('frontend.pages.starting')->with('welcome_msg', $welcome_msg);
     }
@@ -37,8 +31,8 @@ class PagesController extends Controller
 
     public function home()
     {
-
-        return view('frontend.pages.home');
+        $activities = AcademicCalendar::all();
+        return view('frontend.pages.home')->with('activities', $activities);
     }
 
     #METHOD FOR VALIDATING,STORING LOGIN DATA INTO THE DATATBASE
