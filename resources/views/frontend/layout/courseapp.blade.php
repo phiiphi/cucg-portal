@@ -27,7 +27,7 @@
     {{-- @include('frontend.includes.preloader') --}}
 
     {{--     NAVBAR --}}
-    @include('frontend.includes.course_nav')
+{{--    @include('frontend.includes.course_nav')--}}
     <div class="container-fluid">
 
         {{--MAIN CONTENT--}}

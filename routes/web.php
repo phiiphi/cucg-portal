@@ -20,7 +20,10 @@ Route::get('/login', 'PagesController@login')->name('pages.login');
 Route::post('/', 'PagesController@loginstore')->name('pages.loginstore');
 Route::get('/home', 'PagesController@home')->name('pages.home');
 Route::get('/home', 'PagesController@home')->name('pages.home');
-Route::resource('course_registrations', 'CourseRegistrationController');
+
+
+Route::resource('courseRegistration', 'CourseRegistrationController');
+
 
 
 
