@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class courseRegistration extends Model
 {
     //Table Name
-    protected $table = 'courseRegistration';
+    protected $table = 'course_registrations';
     //Primary KEY
     public $primaryKey = 'id';
     //Timestamps
