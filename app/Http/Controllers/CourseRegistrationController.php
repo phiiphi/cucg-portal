@@ -24,7 +24,7 @@ class CourseRegistrationController extends Controller
 
     public function help()
     {
-        return view('frontend.courseRegistration.help');
+
     }
 
     /**
@@ -34,7 +34,8 @@ class CourseRegistrationController extends Controller
      */
     public function index()
     {
-
+        $course_registration = courseRegistration::all();
+        return view('frontend.courseRegistration.forms.registrationDetails')->with('course_registration', $course_registration);
     }
 
     /**
@@ -55,7 +56,9 @@ class CourseRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+           ''
+        ]);
     }
 
     /**

@@ -15,10 +15,14 @@ class CreateCourseRegistrationsTable extends Migration
     {
         Schema::create('course_registrations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('session');
+            $table->dateTime('session');
+            $table->string('firstName');
+            $table->string('otherName');
+            $table->string('surName');
             $table->string('department');
             $table->integer('level');
             $table->string('semester');
+            $table->string('faculty');
             $table->string('course');
             $table->timestamps();
         });

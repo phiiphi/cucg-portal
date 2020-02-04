@@ -21,7 +21,7 @@ Route::post('/', 'PagesController@loginstore')->name('pages.loginstore');
 Route::get('/home', 'PagesController@home')->name('pages.home');
 Route::get('/home', 'PagesController@home')->name('pages.home');
 Route::resource('course_registrations', 'CourseRegistrationController');
-Route::get('/profile','PagesController@profile')->name('pages.profile');
+
 
 
 
@@ -36,6 +36,7 @@ Route::get('/semestercalendar', 'semesterscalendar@index')->name('calendar.index
 
 #END OF FRONTEND ROUTES
 
+
 #BACKEND/ADMIN ROUTES
 
 /* PAGES */
@@ -46,7 +47,6 @@ Route::get('/admin/index', 'AdminpagesController@index')->name('admin.index');
 Route::get('/admin/semestercalendar', 'SemesterscalenderAdminController@index')->name('admin.calendar.index');
 Route::get('/admin/create', 'SemesterscalenderAdminController@create')->name('admin.calendar.create');
 Route::post('/admin/store', 'SemesterscalenderAdminController@store')->name('admin.calendar.store');
-Route::post('semesterscalendarAdmin/{{id}}', 'SemesterscalenderAdminController@update')->name('admin.calendar.update');
 #load activity
 Route::get('/load-activities', 'ActivityController@loadActivities')->name('routeLoadActivities');
 
