@@ -14,14 +14,14 @@ html,
 body {
     background-color: #f3f3f3;
     font-family: "Nunito", sans-serif;
-    height: 60vh;
+    height: 100vh;
     margin: 0;
-    background-image: url(/images/login-register5.jpg);
+    background-image: url(/images/login-register3.jpg);
     background-repeat: no-repeat;
 }
 
 .full-height {
-    height: 60vh;
+    height: 85vh;
 
 }
 

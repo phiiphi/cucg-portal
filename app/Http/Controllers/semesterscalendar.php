@@ -15,7 +15,7 @@ class semesterscalendar extends Controller
      */
     public function index()
     {
-        $activities = AcademicCalendar::all();
+        $activities = AcademicCalendar::paginate(6);
         return view('frontend.semesterCalendar.calendar')->with('activities', $activities);
     }
 

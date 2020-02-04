@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    #WELCOME PAGE METHOD
     public function starting()
     {
         $welcome_msg = "Catholic University Student Portal";
@@ -16,23 +15,25 @@ class PagesController extends Controller
         return view('frontend.pages.starting')->with('welcome_msg', $welcome_msg);
     }
 
-    #SIGNUP PAGE METHOD
     public function signup()
     {
         return view('frontend.pages.signup');
     }
 
-    #LOGIN PAGE METHOD
     public function login()
     {
         return view('frontend.pages.login');
     }
 
-
     public function home()
     {
         $activities = AcademicCalendar::all();
         return view('frontend.pages.home')->with('activities', $activities);
+    }
+
+    public function profile()
+    {
+        return view('frontend.pages.profile');
     }
 
     #METHOD FOR VALIDATING,STORING LOGIN DATA INTO THE DATATBASE

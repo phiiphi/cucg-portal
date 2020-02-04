@@ -14,11 +14,6 @@
     <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-    {{--FullCalendar css --}}
-    <link href="{{asset('assets/fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
-    <link href="{{asset('assets/fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
-    <link href="{{asset('assets/fullcalendar/css/front_calendar.css')}}" rel='stylesheet' />
-
     <!--data table-->
     <link href="{{asset('assets/vendor/data-tables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
@@ -47,13 +42,6 @@
         {{-- FOOTER --}}
         @include('frontend.includes.footer_home')
     </div>
-
-    {{--FullCalendar js --}}
-    <script src="{{asset('assets/fullcalendar/js/calendar_script.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/core/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/interaction/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/daygrid/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/js/front_calendar.js')}}"></script>
 
     <!--js link-->
     <script src="{{ asset('jquery/jquery.min.js')}}"></script>

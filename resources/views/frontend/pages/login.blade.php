@@ -4,7 +4,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-8" id="login">
             <div class="card">
-                <div class="card-header">LOGIN</div>
+            <div class="card-header text-center"><img src="{{asset('/images/slogo1.png')}}" alt="school logo"/> CATHOLIC UNIVERSITY COLLEGE OF GHANA</div>
 
                 <div class="card-body">
                 <form method="post" action="{{route('pages.loginstore')}}">
@@ -56,8 +56,13 @@
                                 @enderror
                             </div>
                         </div>
-
-
+                        {{--Remember me--}}
+                        <div class="form-group row">
+                            <label for="remember" class="col-md-4 col-form-label text-md-right">Remember me</label>
+                            <div class="col-md-6 mt-2">
+                                <input type="checkbox" name="remember" id="remember">
+                            </div>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -26,7 +26,7 @@
     <div class="row ml-2">
         <div class="col-xl-12">
             <div class="card card-shadow mb-4">
-                <div class="card-header border-0">
+                <div class="card-header border-0 bg-warning">
                     <div class="custom-title-wrap bar-primary">
                         <div class="custom-title">FIRST SEMESTER ACADEMIC CALENDAR</div>
                     </div>
@@ -43,12 +43,14 @@
                             </tr>
                             </thead>
                             <tfoot>
+                                {!!$activities->render()!!}
                             </tfoot>
                             <tbody>
                             @foreach ($activities as $activity)
                             <tr>
                                 <td>{{$activity->week}}</td>
-                                <td><b>Start:</b> {{$activity->start}} - <b>End:</b> {{$activity->end}}</td>
+                                <td><b class="text-success">Start:</b> {{formateDate($activity->start)}} <br>
+                                    <b class="text-danger">End:</b> {{formateDate($activity->end)}}</td>
                                 <td>{{$activity->activity}}</td>
                             </tr>
                             @endforeach

@@ -4,7 +4,7 @@
 <div class="row justify-content-center mt-5">
     <div class="col-md-8" id="signup">
         <div class="card">
-            <div class="card-header">Register for an Account</div>
+            <div class="card-header text-center"><img src="{{asset('/images/slogo1.png')}}" alt="school logo"/> CATHOLIC UNIVERSITY COLLEGE OF GHANA</div>
 
             <div class="card-body">
                 <form method="POST" action="">
@@ -71,8 +71,8 @@
                         </div>
                     </div>
 
-                    {{--PHONE NUMBER--}}
-                    {{-- <div class="form-group row">
+                    {{-- PHONE NUMBER--}}
+                    <div class="form-group row">
                         <label for="phone" class="col-md-4 col-form-label text-md-right">Phone Number</label>
 
                         <div class="col-md-6">
@@ -84,7 +84,7 @@
                                 </span>
                             @enderror
                         </div>
-                    </div> --}}
+                    </div>
 
                     {{--PASSWORD--}}
                     <div class="form-group row">

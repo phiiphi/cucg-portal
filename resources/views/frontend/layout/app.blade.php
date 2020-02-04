@@ -29,13 +29,13 @@
         {{-- NAVBAR --}}
         @include('frontend.includes.navbar')
 
-            <div class="container mt-5">
+            <div class="content-wrapper mt-5">
 
                 {{--MAIN CONTENT--}}
                 @yield('content')
 
-        {{-- FOOTER --}}
-        @include('frontend.includes.footer')
+                {{-- FOOTER --}}
+                {{-- @include('frontend.includes.footer') --}}
             </div>
     
     </div>

@@ -72,7 +72,7 @@
 
                         <div class="form-divider"></div>
 
-                        <a href="#" class="btn btn-facebook text-uppercase"><i class="fa fa-facebook-square"></i> Login with facebook</a>
+                        {{-- <a href="#" class="btn btn-facebook text-uppercase"><i class="fa fa-facebook-square"></i> Login with facebook</a> --}}
                         {{-- <div class="text-center mt-4">
                             <a href="{{ route('admin.signup')}}" class="btn-link text-capitalize f12">Create New Account</a>
                         </div> --}}
@@ -84,7 +84,7 @@
                 <div class="login-promo basic-gradient  text-white position-relative">
                     <div class="login-promo-content text-center">
                         <a href="#" class="mb-4 d-block">
-                            <img class="pr-3" src="assets/img/logo-icon.png" srcset="assets/img/logo-icon@2x.png 2x" alt="">
+                            <img class="pr-3" src="/images/slogo1.png" srcset="/images/slogo1@2x.png 2x" alt="">
                             <span class="text-uppercase weight800 text-white f18">Cucg Student Portal</span>
                         </a>
                         <h1 class="text-white">Uniquely Unique</h1>

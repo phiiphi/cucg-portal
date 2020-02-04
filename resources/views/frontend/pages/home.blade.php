@@ -32,10 +32,10 @@
             <!-- Content Column -->
             <div class="col-lg-8 mb-4">
               <div class="row">
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                   <div class="card shadow">
                     <div class="inner">
-                      <img class="card-img-top" src="{{asset('images/girl.jpg')}}" alt="card image top">
+                      <img class="card-img-top img-fluid" src="{{asset('images/register.png')}}" alt="card image top">
                     </div>
                     <div class="card-body bg-success ">
                       <h5 class="card-title text-light"> Register Semester Courses</h5>
@@ -43,21 +43,22 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                     <div class="card shadow">
                       <div class="inner">
-                        <img class="card-img-top" src="{{asset('images/mining.jpg')}}" alt="card image top">
+                        <img class="card-img-top" src="{{asset('images/RegisterIcon2.png')}}" alt="card image top">
                       </div>
                           <div class="card-body bg-primary">
                             <h5 class="card-title text-light"> Check Results</h5>
                             <a href="#" class="btn btn-outline-light">Check Now</a>
+
                           </div>
                       </div>
                 </div>
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                   <div class="card shadow">
                     <div class="inner">
-                      <img class="card-img-top" src="{{asset('images/mining.jpg')}}" alt="card image top">
+                      <img class="card-img-top" src="{{asset('images/timetable.png')}}" alt="card image top">
                     </div>
                         <div class="card-body bg-info">
                           <h5 class="card-title text-light"> Check Semester Timetable</h5>
@@ -65,10 +66,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                   <div class="card shadow">
                     <div class="inner">
-                      <img class="card-img-top" src="{{asset('images/girl.jpg')}}" alt="card image top">
+                      <img class="card-img-top" src="{{asset('images/calendar.jpg')}}" alt="card image top">
                     </div>
                         <div class="card-body bg-warning">
                           <h5 class="card-title text-light"> View Semester Calander</h5>
@@ -76,10 +77,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                   <div class="card shadow">
                     <div class="inner">
-                      <img class="card-img-top" src="{{asset('images/girl.jpg')}}" alt="card image top">
+                      <img class="card-img-top" src="{{asset('images/forms.png')}}" alt="card image top">
                     </div>
                         <div class="card-body bg-danger">
                           <h5 class="card-title text-light"> Student Forms</h5>
@@ -87,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                   <div class="card shadow">
                     <div class="inner">
                       <img class="card-img-top" src="{{asset('images/mining.jpg')}}" alt="card image top">
@@ -121,7 +122,7 @@
               </div>
 
             <!-- Older Announcement-->
-            <div class="card shadow mb-4">
+            {{-- <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Older Announcement</h6>
               </div>
@@ -134,7 +135,7 @@
               </p>
                 <a rel="nofollow" href="#">SEE MORE &rarr;</a>
               </div>
-            </div> 
+            </div>  --}}
             
             {{--Semester Activities--}}
             <div class="card card-shadow mb-4">
@@ -149,8 +150,8 @@
                     @foreach ($activities as $activity)
                       <li class="time-dot-danger">
                           <div class="base-timeline-info">
-                              <a href="#" class="text-danger">{{$activity->title}}</a> 
-                              {{$activity->description}}
+                              <a href="#" class="text-danger">{{$activity->week}}</a> 
+                              {{$activity->activity}}
                           </div>
                           <small class="text-muted">
                             <b>From:</b> {{$activity->start}} <br>

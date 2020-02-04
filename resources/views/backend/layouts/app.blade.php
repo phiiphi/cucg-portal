@@ -57,13 +57,6 @@
 
     <!--custom styles-->
     <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet">
-
-        {{--Full calendar css--}}
-    <link href="{{asset('assets/fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
-    <link href="{{asset('assets/fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
-    <link href="{{asset('assets/fullcalendar/packages/timegrid/main.css')}}" rel='stylesheet' />
-    <link href="{{asset('assets/fullcalendar/packages/list/main.css')}}" rel='stylesheet' />
-    <link href="{{asset('assets/fullcalendar/css/back_calendar.css')}}" rel='stylesheet' />
     
     <!--data table-->
     <link href="{{asset('assets/vendor/data-tables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
@@ -87,29 +80,23 @@
         {{--CONTERNT--}}
         @yield('content')
 
-        <!--footer-->
-    @include('backend.includes.admin_footer')
-        <!--/footer-->
+            <!--footer-->
+        @include('backend.includes.admin_footer')
+            <!--/footer-->
     </div>
     <!--/main content wrapper-->
 
     {{--RIGHT SIDEBAR--}}
     @include('backend.includes.admin_right_sidebar')
 
-    {{--Full calendar js--}}
-    <script src="{{asset('assets/fullcalendar/js/calendar_script.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/core/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/interaction/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/daygrid/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/timegrid/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/packages/list/main.js')}}"></script>
-    <script src="{{asset('assets/fullcalendar/js/back_calendar.js')}}"></script>
-
     <!--basic scripts-->
+    <script src="{{ asset('js/main.js')}}"></script>
+    <script src="{{ asset('assets/js/main.js')}}"></script>
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/popper.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/app.js')}}"></script> 
 
     <script src="{{ asset('assets/vendor/jquery-dropdown-master/jquery.dropdown.js')}}"></script>
 
@@ -177,8 +164,7 @@
     <![endif]-->
 
     <!--basic scripts initialization-->
-    <script src="{{ asset('assets/js/scripts.js')}}"></script>
-
+    <script src="{{ asset('assets/js/scripts.js')}}"></script> 
 </body>
 <!-- Mirrored from thevectorlab.net/dashlab-v1.3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Feb 2019 05:38:32 GMT -->
 </html>

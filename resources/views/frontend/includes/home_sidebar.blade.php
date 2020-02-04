@@ -2,7 +2,7 @@
     <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('pages.home')}}">
           <div class="sidebar-brand-icon mt-3">
             <img src="{{ asset('images/slogo1.png')}}" alt="cucg logo">
           </div>
@@ -10,7 +10,7 @@
   
         <!-- profile -->
         <li class="nav-item active">
-          <a class="nav-link text-center" href="#">
+          <a class="nav-link text-center" href="{{route('pages.home')}}">
             <span>CUCG STUDENT PORTAL</span></a>
         </li>
   
