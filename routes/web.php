@@ -19,7 +19,8 @@ Route::get('/signup', 'PagesController@signup')->name('pages.signup');
 Route::get('/login', 'PagesController@login')->name('pages.login');
 Route::post('/', 'PagesController@loginstore')->name('pages.loginstore');
 Route::get('/home', 'PagesController@home')->name('pages.home');
-Route::get('/home', 'PagesController@home')->name('pages.home');
+Route::get('/profile', 'PagesController@profile')->name('pages.profile');
+
 Route::resource('course_registrations', 'CourseRegistrationController');
 
 
