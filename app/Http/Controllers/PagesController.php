@@ -51,9 +51,6 @@ class PagesController extends Controller
         //     'password'      =>  'require'
         // ]);
 
-        #save into database
-
-        #redirect to the home page
         return redirect()->route('pages.home');
     }
 }

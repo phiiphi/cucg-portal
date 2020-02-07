@@ -1,6 +1,6 @@
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark shadow-sm fixed-top">
   <a class="navbar-brand text-white navbrand" href="{{route('pages.starting')}}">
-  CUCG STUDENT PORTAL
+    CUCG STUDENT PORTAL
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">

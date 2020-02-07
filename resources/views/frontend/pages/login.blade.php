@@ -1,79 +1,47 @@
 @extends('frontend.layout.app')
 
 @section('content')
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8" id="login">
+    <div class="row justify-content-center">
+        <div class="col-md-6" id="login">
             <div class="card">
             <div class="card-header text-center"><img src="{{asset('/images/slogo1.png')}}" alt="school logo"/> CATHOLIC UNIVERSITY COLLEGE OF GHANA</div>
 
                 <div class="card-body">
-                <form method="post" action="{{route('pages.loginstore')}}">
+                    <form class="registration" id="registration" method="post" action="{{route('pages.loginstore')}}">
                         @csrf
-                        {{--INDEX NUMBER--}}
-                        <div class="form-group row">
-                            <label for="index_number" class="col-md-4 col-form-label text-md-right">Enter Index Number</label>
-
-                            <div class="col-md-6">
-                                <input id="index_number" type="text" class="form-control @error('index_number') is-invalid @enderror" name="index_number" value="{{ old('index_number') }}" required autocomplete="index_number" autofocus placeholder="example: ugr0201610162">
-
-                                @error('index_number')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        {{--FACULTY--}}
-                        <div class="form-group row">
-                            <label for="faculty" class="col-md-4 col-form-label text-md-right">Choose Faculty</label>
-
-                            <div class="col-md-6">
-                                <select name="faculty" id="faculty">
-                                    <option value="Select Your Faculty">Select Your Faculty</option>
-                                    <option value="Information Communication and Technology">Information Communication and Technology</option>
-                                    <option value="Economics and Business Adminstration">Economics and Business Adminstration</option>
-                                    <option value="Health and Allied Science">Health and Allied Science</option>
-                                    <option value="Nursing">Nursing</option>
-                                    <option value="Education">Education</option>
-                                    <option value="Religious Studies">Religious Studies</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        {{--PASSWORD--}}
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="please enter password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-                        {{--Remember me--}}
-                        <div class="form-group row">
-                            <label for="remember" class="col-md-4 col-form-label text-md-right">Remember me</label>
-                            <div class="col-md-6 mt-2">
-                                <input type="checkbox" name="remember" id="remember">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-                            </div>
-                        </div>
+                    
+                        <label for="username">
+                            <input type="text" class="form-control form-control-user" id="username" minlength="13" maxlength="13" placeholder="Enter Index Number..." required>
+            
+                            <ul class="input-requirements">
+                                <li>At least 13 characters long</li>
+                                <li>Must only contain letters and numbers (no special characters)</li>
+                            </ul>
+                        </label>
+        
+                        <label for="password">
+                            <input type="password" class="form-control form-control-user" id="password" maxlength="100" minlength="8" placeholder="Password" required>
+                            
+                            <ul class="input-requirements">
+                                <li>At least 8 characters long (and less than 100 characters)</li>
+                                <li>Contains at least 1 number</li>
+                                <li>Contains at least 1 lowercase letter</li>
+                                <li>Contains at least 1 uppercase letter</li>
+                                <li>Contains a special character (e.g. @ !)</li>
+                            </ul>
+                        </label>
+                    
+                        <label for="password_repeat">
+                            <input type="password" class="form-control form-control-user" id="password_repeat" maxlength="100" minlength="8" placeholder="Repeat password" required>
+                        </label>
+                        <input type="submit" value="LOGIN">
+                        <hr>
+                        <div class="container text-center">
+                            <a href="http://" class="text-decoration-none">forget password?</a> ||
+                            <a href="{{route('pages.signup')}}" class="text-decoration-none"> create an account</a>
+                        </div> 
+            
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 @endsection

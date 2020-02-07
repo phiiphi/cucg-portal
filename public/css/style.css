@@ -21,8 +21,7 @@ body {
 }
 
 .full-height {
-    height: 85vh;
-
+    height: 100vh;
 }
 
 .flex-center {
@@ -48,18 +47,17 @@ body {
 
 .title {
     font-size: 24px;
-    /* margin-top: 160px; */
+    /* margin-top: 50px;  */
 }
+
 
 /*************
 1. Navbar
 
 ***************/
 nav {
-    background-color: #312D40;
+    background-color: #312d40;
     position: fixed;
-
-
 }
 
 .navbrand {
@@ -77,3 +75,5 @@ nav {
 #login {
     margin-top: 80px;
 }
+
+#success_message{ display: none;}
