@@ -19,6 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/formstyle.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/formhack.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -40,8 +42,8 @@
     
     </div>
 
-
     <!--js link-->
+    <script src="{{ asset('js/validator.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="js/typewriter.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
