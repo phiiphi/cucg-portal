@@ -17,20 +17,17 @@
 Route::get('/', 'PagesController@starting')->name('pages.starting');
 Route::get('/signup', 'PagesController@signup')->name('pages.signup');
 Route::get('/login', 'PagesController@login')->name('pages.login');
-Route::post('/', 'PagesController@loginstore')->name('pages.loginstore');
+Route::post('/loginauth', 'PagesController@loginstore')->name('pages.loginstore');
+Route::post('/registerauth', 'PagesController@registerstore')->name('pages.registerstore');
 Route::get('/home', 'PagesController@home')->name('pages.home');
 Route::get('/profile', 'PagesController@profile')->name('pages.profile');
 
 Route::resource('course_registrations', 'CourseRegistrationController');
 
-
-
-
 /* Course Registration Routes */
 Route::get('/home/registration', 'CourseRegistrationController@personalInfo')->name('courseRegistration.forms.personalInfo');
 Route::get('/home/registration/registrationDetails', 'CourseRegistrationController@registrationDetails')->name('courseRegistration.forms.registrationDetails');
 Route::get('/home/registration/academicInfo', 'CourseRegistrationController@academicInfo')->name('courseRegistration.forms.academicInfo');
-
 /* Semester Calendar Routes */
 Route::get('/semestercalendar', 'semesterscalendar@index')->name('calendar.index');
 

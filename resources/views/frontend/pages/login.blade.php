@@ -9,19 +9,19 @@
                 <div class="card-body">
                     <form class="registration" id="registration" method="post" action="{{route('pages.loginstore')}}">
                         @csrf
-                    
-                        <label for="username">
-                            <input type="text" class="form-control form-control-user" id="username" minlength="13" maxlength="13" placeholder="Enter Index Number..." required>
-            
+
+                        <label for="index_number">
+                            <input type="text" name="index_number" class="form-control form-control-user" id="index_number" value="{{old('')}}" minlength="13" maxlength="13" placeholder="Enter Index Number eg.ugr0201610162" required>
+
                             <ul class="input-requirements">
                                 <li>At least 13 characters long</li>
                                 <li>Must only contain letters and numbers (no special characters)</li>
                             </ul>
                         </label>
-        
+
                         <label for="password">
-                            <input type="password" class="form-control form-control-user" id="password" maxlength="100" minlength="8" placeholder="Password" required>
-                            
+                            <input type="password" name="password" class="form-control form-control-user" id="password" value="{{old('password')}}" maxlength="100" minlength="8" placeholder="Password" required>
+
                             <ul class="input-requirements">
                                 <li>At least 8 characters long (and less than 100 characters)</li>
                                 <li>Contains at least 1 number</li>
@@ -30,17 +30,13 @@
                                 <li>Contains a special character (e.g. @ !)</li>
                             </ul>
                         </label>
-                    
-                        <label for="password_repeat">
-                            <input type="password" class="form-control form-control-user" id="password_repeat" maxlength="100" minlength="8" placeholder="Repeat password" required>
-                        </label>
                         <input type="submit" value="LOGIN">
                         <hr>
                         <div class="container text-center">
                             <a href="http://" class="text-decoration-none">forget password?</a> ||
                             <a href="{{route('pages.signup')}}" class="text-decoration-none"> create an account</a>
-                        </div> 
-            
+                        </div>
+
                     </form>
 
 
