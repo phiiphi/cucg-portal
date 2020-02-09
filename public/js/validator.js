@@ -87,13 +87,13 @@ CustomValidation.prototype = {
 
 ---------------------------- */
 
-var usernameValidityChecks = [
+var indexValidityChecks = [
 	{
 		isInvalid: function(input) {
 			return input.value.length < 13;
 		},
 		invalidityMessage: 'This input needs to be at least 13 characters',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
+		element: document.querySelector('label[for="index_number"] .input-requirements li:nth-child(1)')
 	},
 	{
 		isInvalid: function(input) {
@@ -101,7 +101,7 @@ var usernameValidityChecks = [
 			return illegalCharacters ? true : false;
 		},
 		invalidityMessage: 'Only letters and numbers are allowed',
-		element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
+		element: document.querySelector('label[for="index_number"] .input-requirements li:nth-child(2)')
 	}
 ];
 
@@ -162,12 +162,12 @@ var passwordRepeatValidityChecks = [
 
 ---------------------------- */
 
-var usernameInput = document.getElementById('username');
+var indexInput = document.getElementById('index_number');
 var passwordInput = document.getElementById('password');
 var passwordRepeatInput = document.getElementById('password_repeat');
 
-usernameInput.CustomValidation = new CustomValidation(usernameInput);
-usernameInput.CustomValidation.validityChecks = usernameValidityChecks;
+indexInput.CustomValidation = new CustomValidation(indexInput);
+indexInput.CustomValidation.validityChecks = indexValidityChecks;
 
 passwordInput.CustomValidation = new CustomValidation(passwordInput);
 passwordInput.CustomValidation.validityChecks = passwordValidityChecks;

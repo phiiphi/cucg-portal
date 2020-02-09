@@ -7,7 +7,7 @@
             <div class="card-header text-center"><img src="{{asset('/images/slogo1.png')}}" alt="school logo"/> CATHOLIC UNIVERSITY COLLEGE OF GHANA</div>
 
             <div class="card-body">
-                <form method="POST" action="">
+                <form method="post" action="{{route('pages.registerstore')}}">
                     @csrf
                     {{--FULL NAME--}}
                     <div class="form-group row">
@@ -114,14 +114,14 @@
                         <label for="country" class="col-md-4 col-form-label text-md-right">Choose Country</label>
 
                         <div class="col-md-6">
-                            <select name="country" id="faculty">
+                            <select name="country" id="country">
                                 <option value="Select Your country">Select Your Country</option>
                                 <option value="Ghana">Ghana</option>
                                 <option value="Nigeria">Nigeria</option>
                                 <option value="cote d'ivore">Cote d'ivove</option>
                                 <option value="Togo">Togo</option>
                                 <option value="Benin">Benin</option>
-                        
+
                             </select>
                         </div>
                     </div>
