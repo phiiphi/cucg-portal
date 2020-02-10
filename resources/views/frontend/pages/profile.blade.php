@@ -39,7 +39,7 @@
                 <div class="profile-follower-info">
                     <div class="d-inline-block px-4 text-left text-light">
                         <strong class="f14 d-block">Faculty</strong>
-                        <p>{{$student->faculty}}</p>
+                        <p>{{$student->faculty ?? ''}}</p>
                     </div>
                     {{-- <div class="d-inline-block px-4 text-left text-light">
                         <strong class="f14 d-block"></strong>
@@ -98,7 +98,7 @@
                             <div class="mt-4 mb-3">
                                 <img class="rounded-circle" src="assets/img/avatar/avatar-large3.jpg" width="85" alt=""/>
                             </div>
-                            <h5 class="text-uppercase mb-0">{{$student->name}}</h5>
+                            <h5 class="text-uppercase mb-0">{{$student->name ?? ''}}</h5>
                             <p class="text-muted mb-0">Computer Science </p>
                             <div class="rattings mb-4">
                                 <i class="fa fa-star text-warning"></i>

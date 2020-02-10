@@ -27,7 +27,7 @@
 <body>
     <div id="app">
         {{-- Alert Messages--}}
-        @include('frontend.includes.alertmessages')
+        @include('sweetalert::alert')
 
         {{-- NAVBAR --}}
         {{-- @include('frontend.includes.home_nav') --}}

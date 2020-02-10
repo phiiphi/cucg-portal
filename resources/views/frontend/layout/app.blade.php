@@ -28,6 +28,9 @@
         {{-- PRE-LOADER--}}
         {{-- @include('frontend.includes.preloader') --}}
 
+        {{--Alert --}}
+        @include('sweetalert::alert')
+
         {{-- NAVBAR --}}
         @include('frontend.includes.navbar')
 
@@ -39,7 +42,7 @@
                 {{-- FOOTER --}}
                 {{-- @include('frontend.includes.footer') --}}
             </div>
-    
+
     </div>
 
     <!--js link-->

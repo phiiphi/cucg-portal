@@ -13,4 +13,9 @@ class Student extends Model
     protected $fillable = [
         'name', 'index_number', 'faculty', 'email', 'phone', 'country', 'password'
     ];
+
+    public function verifyUser()
+    {
+    return $this->hasOne('App\VerifyUser');
+    }
 }

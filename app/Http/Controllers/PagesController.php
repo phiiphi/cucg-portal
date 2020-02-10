@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Student;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PagesController extends Controller
 {
@@ -81,8 +83,8 @@ class PagesController extends Controller
 
         #create instance of student table and save data
         Student::create($request->all());
-
-        return redirect()->route('pages.login')->with('success', "Registration was successful"); #NB: will create a success page
+        Alert::success('Congratulation', 'You have successfully registered for an account');
+        return redirect()->route('pages.login');
 
     }
 
@@ -99,15 +101,18 @@ class PagesController extends Controller
             'password'           =>     'required|min:8|max:100',
         ]);
 
-        if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password])) {
-            return redirect()->route('pages.home')->with('success', 'login successful');
+        if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        {
+            Alert::toast('Woow! you have successfully login','success');
+            return redirect()->route('pages.home');
         } else {
-            return view('pages.login')->with('errors', 'Login failed, try again with the appropriate credentials');
+            Alert::error('Oops!','something went wrong! try again.');
+            return redirect()->route('pages.login');
         }
     }
 
     public function logout()
-    {
+    {   
         Auth::logout();
         return redirect()->route('pages.login');
     }
