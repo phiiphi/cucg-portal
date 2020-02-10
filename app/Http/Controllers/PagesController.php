@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AcademicCalendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Middleware\Authenticate;
 use App\Student;
 
 class PagesController extends Controller
@@ -27,17 +28,35 @@ class PagesController extends Controller
         return view('frontend.pages.login');
     }
 
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function home()
     {
-        $activities = AcademicCalendar::all();
-        return view('frontend.pages.home')->with('activities', $activities);
+        if(!Auth::check())
+        {
+            return view('frontend.pages.login');
+
+        }else{
+            $student = Auth::user();
+            $activities = AcademicCalendar::all();
+            return view('frontend.pages.home', compact('activities','student'));
+        }
+
     }
 
 
     public function profile()
     {
-        return view('frontend.pages.profile');
+        if(!Auth::check())
+        {
+            return view('frontend.pages.login');
+        }else{
+            $student = Auth::user();
+            return view('frontend.pages.profile', compact('student'));
+        }
     }
 
 
@@ -83,7 +102,13 @@ class PagesController extends Controller
         if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password])) {
             return redirect()->route('pages.home')->with('success', 'login successful');
         } else {
-            return redirect()->route('pages.login')->with('error', 'Login failed, try again with the appropriate credentials');
+            return view('pages.login')->with('errors', 'Login failed, try again with the appropriate credentials');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('pages.login');
     }
 }

@@ -21,7 +21,7 @@ Route::post('/loginauth', 'PagesController@loginstore')->name('pages.loginstore'
 Route::post('/registerauth', 'PagesController@registerstore')->name('pages.registerstore');
 Route::get('/home', 'PagesController@home')->name('pages.home');
 Route::get('/profile', 'PagesController@profile')->name('pages.profile');
-
+Route::get('/logout', 'PagesController@logout')->name('pages.logout');
 Route::resource('course_registrations', 'CourseRegistrationController');
 
 /* Course Registration Routes */
