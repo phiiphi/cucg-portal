@@ -136,7 +136,7 @@
                 <a rel="nofollow" href="#">SEE MORE &rarr;</a>
               </div>
             </div>  --}}
-            
+
             {{--Semester Activities--}}
             <div class="card card-shadow mb-4">
               <div class="card-header border-0">
@@ -150,7 +150,7 @@
                     @foreach ($activities as $activity)
                       <li class="time-dot-danger">
                           <div class="base-timeline-info">
-                              <a href="#" class="text-danger">{{$activity->week}}</a> 
+                              <a href="#" class="text-danger">{{$activity->week}}</a>
                               {{$activity->activity}}
                           </div>
                           <small class="text-muted">
@@ -180,23 +180,7 @@
     <a class="scroll-to-top rounded" href="#">
         <i class="fas fa-angle-up"></i>
       </a>
-    
+
       <!-- Logout Modal-->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                {{-- <span aria-hidden="true">good</span> --}}
-              </button>
-            </div>
-            <div class="modal-body">Select Logout below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="{{ route('pages.login')}}">Logout</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      @include('frontend.includes.logout')
 @endsection

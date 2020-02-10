@@ -26,8 +26,8 @@
 </head>
 <body>
     <div id="app">
-        {{-- PRE-LOADER--}}
-        {{-- @include('frontend.includes.preloader') --}}
+        {{-- Alert Messages--}}
+        @include('frontend.includes.alertmessages')
 
         {{-- NAVBAR --}}
         {{-- @include('frontend.includes.home_nav') --}}
