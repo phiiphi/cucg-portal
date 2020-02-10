@@ -36,8 +36,5 @@
                             <a href="http://" class="text-decoration-none">forget password?</a> ||
                             <a href="{{route('pages.signup')}}" class="text-decoration-none"> create an account</a>
                         </div>
-
                     </form>
-
-
 @endsection

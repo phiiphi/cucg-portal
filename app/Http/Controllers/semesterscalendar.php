@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\AcademicCalendar;
 use Illuminate\Http\Request;
 use App\semestercalendar;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Middleware\Authenticate;
+use App\Student;
 
 class semesterscalendar extends Controller
 {
@@ -15,8 +18,14 @@ class semesterscalendar extends Controller
      */
     public function index()
     {
-        $activities = AcademicCalendar::paginate(6);
-        return view('frontend.semesterCalendar.calendar')->with('activities', $activities);
+        if(!Auth::check())
+        {
+            return view('frontend.pages.login');
+        }else{
+            $student = Auth::user();
+            $activities = AcademicCalendar::paginate(6);
+            return view('frontend.semesterCalendar.calendar',compact('activities','student'));
+        }
     }
 
     /**
