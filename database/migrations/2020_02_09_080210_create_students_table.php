@@ -20,6 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('faculty');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('verified')->default(false);
             $table->integer('phone');
             $table->string('country');
             $table->string('password');

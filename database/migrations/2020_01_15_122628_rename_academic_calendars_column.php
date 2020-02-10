@@ -28,7 +28,7 @@ class RenameAcademicCalendarsColumn extends Migration
     {
         Schema::table('academic_calendars', function (Blueprint $table) {
             $table->renameColumn('title', 'week');
-            $table->renameColumn('registration', 'activity');
+            $table->renameColumn('description', 'activity');
         });
     }
 }
