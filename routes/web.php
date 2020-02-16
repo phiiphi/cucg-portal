@@ -40,6 +40,7 @@ Route::get('/semestercalendar', 'semesterscalendar@index')->name('calendar.index
 /* PAGES */
 Route::get('/admin', 'AdminpagesController@login')->name('admin.login');
 Route::get('/admin/index', 'AdminpagesController@index')->name('admin.index');
+// Route::post('/superlogin','LoginController@superLoginValidation')->name('superadmin.login');
 
 /* Semester Calendar Admin Routes */
 Route::get('/admin/semestercalendar', 'SemesterscalenderAdminController@index')->name('admin.calendar.index');

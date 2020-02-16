@@ -56,18 +56,30 @@
             <div class="col-xl-12 d-lg-flex align-items-center">
                 <!--login form-->
                 <div class="login-form">
-                    <h4 class="text-uppercase text-purple text-center mb-5">Login</h4>
-                    <form action="http://thevectorlab.net/dashlab-v1.3/index.html">
+                    <h4 class="text-uppercase text-purple text-center mb-5">SuperAdmin Login</h4>
+                    <form action="{{route('admin.login')}}" method="POST">
+                        @csrf
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="email" class="form-control  @error('email') is-invalid @enderror" name="email" id="exampleInputEmail1" value="{{ old('email') }}" placeholder="Enter email" required>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-group mb-4">
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="exampleInputPassword1" required placeholder="Enter Password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group clearfix">
                             <a href="#" class="float-left forgot-link my-2">Forgot Password ?</a>
-                            <a href="{{ route('admin.index')}}" class="btn btn-purple float-right">LOGIN</a>
+                            <a href="{{route('admin.index')}}" class="btn btn-purple float-right">LOGIN</a>
+                            {{-- <input type="submit" value="LOGIN" class="btn btn-purple float-right"> --}}
                         </div>
 
                         <div class="form-divider"></div>

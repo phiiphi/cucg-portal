@@ -39,10 +39,11 @@ class PagesController extends Controller
     {
         if(!Auth::check())
         {
+            Alert::toast('Sorry! only registered users can access that page. kindly register','error');
             return view('frontend.pages.login');
 
         }else{
-            $student = Auth::user();
+            $student    = Auth::user();
             $activities = AcademicCalendar::all();
             return view('frontend.pages.home', compact('activities','student'));
         }
@@ -54,6 +55,7 @@ class PagesController extends Controller
     {
         if(!Auth::check())
         {
+            Alert::toast('Sorry! only registered users can access that page. kindly register','error');
             return view('frontend.pages.login');
         }else{
             $student = Auth::user();
@@ -66,12 +68,12 @@ class PagesController extends Controller
     {
         return $this->validate($request, [
             'name'               =>     'required|min:10|max:255',
-            'index_number'       =>     'required|min:13|max:13',
+            'index_number'       =>     'required|min:13|max:13|unique:students,index_number',
             'faculty'            =>     'required',
             'email'              =>     'required|email|unique:students|max:255',
-            'phone'              =>     'required|min:10|numeric',  #regex:/(0233)[0-9]{9}/
+            'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone,except,id',  #regex:/(0233)[0-9]{9}/
             'country'            =>     'required',
-            'password'           =>     'required|confirmed|min:8|max:100',
+            'password'           =>     'required|confirmed|min:8|max:50',
         ]);
     }
 
@@ -103,16 +105,16 @@ class PagesController extends Controller
 
         if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
         {
-            Alert::toast('Woow! you have successfully login','success');
+            Alert::toast('You have successfully login','success');
             return redirect()->route('pages.home');
         } else {
-            Alert::error('Oops!','something went wrong! try again.');
+            Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
             return redirect()->route('pages.login');
         }
     }
 
     public function logout()
-    {   
+    {
         Auth::logout();
         return redirect()->route('pages.login');
     }

@@ -1,4 +1,4 @@
-@extends('frontend.layout.app')
+@extends('frontend.layout.registerapp')
 
 @section('content')
 <div class="row justify-content-center mt-5">
@@ -14,7 +14,7 @@
                         <label for="name" class="col-md-4 col-form-label text-md-right">Enter Full Name</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="please enter full name">
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="please enter full name" minlength="7" maxlength="100">
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                         <label for="index_number" class="col-md-4 col-form-label text-md-right">Enter Index Number</label>
 
                         <div class="col-md-6">
-                            <input id="index_number" type="text" class="form-control @error('index_number') is-invalid @enderror" name="index_number" value="{{ old('index_number') }}" required autocomplete="index_number" autofocus placeholder="example: ugr0201610162">
+                            <input id="index_number" type="text" class="form-control @error('index_number') is-invalid @enderror" name="index_number" value="{{ old('index_number') }}" required autocomplete="index_number" autofocus placeholder="example: ugr0201610162" minlength="13" maxlength="13">
 
                             @error('index_number')
                                 <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                             <label for="faculty" class="col-md-4 col-form-label text-md-right">Choose Faculty</label>
 
                             <div class="col-md-6">
-                                <select name="faculty" id="faculty">
+                                <select name="faculty" id="faculty" required>
                                     <option value="Select Your Faculty">Select Your Faculty</option>
                                     <option value="Information Communication and Technology">Information Communication and Technology</option>
                                     <option value="Economics and Business Adminstration">Economics and Business Adminstration</option>
@@ -76,7 +76,7 @@
                         <label for="phone" class="col-md-4 col-form-label text-md-right">Phone Number</label>
 
                         <div class="col-md-6">
-                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="example: 054XXXXXXX">
+                            <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="example: 054XXXXXXX" minlength="10" maxlength="10">
 
                             @error('phone')
                                 <span class="invalid-feedback" role="alert">

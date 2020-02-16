@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -36,4 +39,23 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    // public function superLoginValidation(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'email'     =>      'required|email|max:255|unique:table,column',
+    //         'password'  =>      'required|min:8|max:50'
+    //     ]);
+
+    //     if(Auth::guard('superadmin')->attempt(['email' => $request->email, 'password' => $request->password]))
+    //     {
+    //         Alert::toast('You have successfully login as SuperAdmin','success');
+    //         return redirect()->route('admin.index');
+    //     }
+    //     else{
+    //         Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+    //         return redirect()->route('admin.login');
+    //     }
+    // }
 }

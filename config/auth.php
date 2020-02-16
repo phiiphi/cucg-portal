@@ -41,6 +41,12 @@ return [
             'provider' => 'users',
         ],
 
+        // 'super_admins' => [
+        //     'redirectTo' => 'admin.login',
+        //     'driver' => 'session',
+        //     'provider' => 'super_admins',
+        // ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -71,10 +77,20 @@ return [
             'model' => App\Student::class,
         ],
 
+        // 'super_admins' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\SuperAdmin::class,
+        // ],
+
         'users' => [
             'driver' => 'database',
             'table' => 'students',
         ],
+
+        // 'super_admins' => [
+        //     'driver' => 'database',
+        //     'table' => 'super_admins',
+        // ]
     ],
 
     /*
@@ -99,7 +115,7 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        
+
     ],
 
     /*

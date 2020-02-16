@@ -6,8 +6,7 @@ use App\AcademicCalendar;
 use Illuminate\Http\Request;
 use App\semestercalendar;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Middleware\Authenticate;
-use App\Student;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class semesterscalendar extends Controller
 {
@@ -20,9 +19,10 @@ class semesterscalendar extends Controller
     {
         if(!Auth::check())
         {
+            Alert::toast('Sorry! only registered users can access that page. kindly register','error');
             return view('frontend.pages.login');
         }else{
-            $student = Auth::user();
+            $student    = Auth::user();
             $activities = AcademicCalendar::paginate(6);
             return view('frontend.semesterCalendar.calendar',compact('activities','student'));
         }

@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="col-8">
                                         <div class="tab-content" id="v-pills-tabContent">
-                                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                            {{-- <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                                 <ul class="list-unstyled b-mega-menu-link">
                                                     <li><a href="#">Bootstrap 4 Stable</a></li>
                                                     <li class="active"><a href="javascript:;">DashLab Modern Admin</a></li>
@@ -68,7 +68,7 @@
                                                     <li><a href="#">SASS and GULP Task</a></li>
                                                     <li><a href="#">Fully Responsive</a></li>
                                                 </ul>
-                                            </div>
+                                            </div> --}}
                                             <div class="tab-pane fade" id="v-pills-report" role="tabpanel" aria-labelledby="v-pills-report-tab">
                                                 <ul class="list-unstyled b-mega-menu-link">
                                                     <li><a href="#">Daily Reports</a></li>
