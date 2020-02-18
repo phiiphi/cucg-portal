@@ -10,7 +10,9 @@ class ProgramStatus extends Model
 {
     protected $primaryKey = 'ProgStatus_id';
     public $incrementing = false;
-    protected $guarded = [];
+    protected $fillable = [
+        'ProgStatus_id','index_number','ProgStatus'
+    ];
 
     public static function boot()
     {
