@@ -22,16 +22,15 @@ class PagesController extends Controller
     protected $students,$faculty,$program,$programOption,$nationality,$programStatus,$studentStatus;
     public function __construct()
     {
-        $this->students = new Student();
-        $this->faculty  = new Faculty();
-        $this->program = new Program();
+        $this->students      = new Student();
+        $this->faculty       = new Faculty();
+        $this->program       = new Program();
         $this->programOption = new ProgramOption();
-        $this->nationality = new Nationality();
+        $this->nationality   = new Nationality();
         $this->programStatus = new ProgramStatus();
         $this->studentStatus = new StudentStatus();
-
-
     }
+
     public function starting()
     {
         $welcome_msg = "Catholic University Student Portal";
@@ -97,7 +96,7 @@ class PagesController extends Controller
             'program_status'     =>     'required',
             'index_number'       =>     'required|min:13|max:13|unique:students,index_number',  #|exists:registry_biodatas,Student Number unique:students,index_number
             'faculty'            =>     'required',
-            'email'              =>     'required|email|max:255|unique:students',
+            'email'              =>     'required|email|max:255|unique:students', 
             'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
             'country'            =>     'required',
             'password'           =>     'required|confirmed|min:8|max:50',
@@ -112,62 +111,58 @@ class PagesController extends Controller
         $request['password'] = bcrypt($request->password);
 
         DB::beginTransaction();
+
         try {
             $students = $this->students->create([
-                'index_number'  =>  $request['index_number'],
-                'last_name'     =>  $request['last_name'],
-                'other_names'   =>  $request['other_names'],
-                'phone'         =>  $request['phone'],
-                'email'         =>  $request['email'],
-                'gender'        =>  $request['gender'],
-                'level'         =>  $request['level'],
-                'password'      =>  $request['password']
+                'index_number'  =>  $request->index_number,
+                'last_name'     =>  $request->last_name,
+                'other_names'   =>  $request->other_names,
+                'phone'         =>  $request->phone,
+                'email'         =>  $request->email,
+                'gender'        =>  $request->gender,
+                'level'         =>  $request->level,
+                'password'      =>  $request->password
             ]);
-
+    
             $faculty = $this->faculty->create([
-                'index_number'  =>  $request['index_number'],
-                'faculty'       => $request['faculty_name']
+                'student_id'    => $students->index_number,
+                'faculty_name'       => $request->faculty
             ]);
-
+    
             $program = $this->program->create([
-                'index_number'  =>  $request['index_number'],
-                'program'       => $request['program_name']
+                'student_id'    => $students->index_number,
+                'program_name'       => $request->program
             ]);
-
+    
             $programOption = $this->programOption->create([
-                'index_number'  =>  $request['index_number'],
-                'program_option'=> $request['Option_name']
+                'student_id'  => $students->index_number,
+                'Option_name'=> $request->program_option
             ]);
-
+    
             $programStatus = $this->programStatus->create([
-                'index_number'  =>  $request['index_number'],
-                'program_status' => $request['ProgStatus']
+                'student_id'  =>  $students->index_number,
+                'ProgStatus'  => $request->program_status
             ]);
-
+    
             $nationality = $this->nationality->create([
-                'index_number'  =>  $request['index_number'],
-                'country'       => $request['country_name']
+                'student_id'   => $students->index_number,
+                'country_name'       => $request->country
             ]);
-
+    
             $studentStatus = $this->studentStatus->create([
-                'index_number'  =>  $request['index_number'],
-                'student_status'=> $request['status']
+                'student_id'  =>  $students->index_number,
+                'status'=> $request->student_status
             ]);
 
-            if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus)
+            if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus) 
             {
                 DB::commit();
             }else{
                 DB::rollBack();
             }
-<<<<<<< HEAD
-
-=======
             return redirect()->back();
->>>>>>> 024774249d367f6bdc427dd8e6288430523abc2d
         } catch (\Exception $exception) {
             DB::rollBack();
-            return redirect()->back();
         }
 
         Alert::success('Congratulation', 'You have successfully registered for an account');

@@ -9,8 +9,8 @@ class Student extends Model
 {
     use SoftDeletes;
 
-    protected $primaryKey = 'index_number';
-    public $incrementing  = false;
+    // protected $primaryKey = 'index_number';
+    // public $incrementing  = false;
     #mass assignable attributes/fields
     protected $fillable = [
         'index_number','last_name', 'other_names', 'email', 'phone','gender','level', 'password'
