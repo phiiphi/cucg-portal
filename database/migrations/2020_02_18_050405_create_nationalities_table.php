@@ -14,7 +14,7 @@ class CreateNationalitiesTable extends Migration
     public function up()
     {
         Schema::create('nationalities', function (Blueprint $table) {
-            $table->string('country_id');
+            $table->string('country_id')->primary();
             $table->string('index_number');
             $table->foreign('index_number')->references('index_number')->on('students')->onDelete('cascade');
             $table->string('country_name');

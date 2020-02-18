@@ -14,7 +14,7 @@ class CreateProgramOptionsTable extends Migration
     public function up()
     {
         Schema::create('program_options', function (Blueprint $table) {
-            $table->string('ProgramOpt_id');
+            $table->string('ProgramOpt_id')->primary();
             $table->string('index_number');
             $table->foreign('index_number')->references('index_number')->on('students')->onDelete('cascade');
             $table->string('Option_name');

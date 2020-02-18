@@ -160,7 +160,7 @@ class PagesController extends Controller
             }else{
                 DB::rollBack();
             }
-    
+            return redirect()->back();
         } catch (\Exception $exception) {
             DB::rollBack();
         }
@@ -183,14 +183,14 @@ class PagesController extends Controller
             'password'           =>     'required|min:8|max:100',
         ]);
 
-        // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
-        // {
-        //     Alert::toast('You have successfully login','success');
-        //     return redirect()->route('pages.home');
-        // } else {
-        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
-        //     return redirect()->route('pages.login');
-        // }
+        if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        {
+            Alert::toast('You have successfully login','success');
+            return redirect()->route('pages.home');
+        } else {
+            Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+            return redirect()->route('pages.login');
+        }
     }
 
     public function logout()
