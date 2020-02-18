@@ -97,7 +97,7 @@ class PagesController extends Controller
             'program_status'     =>     'required',
             'index_number'       =>     'required|min:13|max:13|unique:students,index_number',  #|exists:registry_biodatas,Student Number unique:students,index_number
             'faculty'            =>     'required',
-            'email'              =>     'required|email|max:255|unique:students', 
+            'email'              =>     'required|email|max:255|unique:students',
             'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
             'country'            =>     'required',
             'password'           =>     'required|confirmed|min:8|max:50',
@@ -123,46 +123,47 @@ class PagesController extends Controller
                 'level'         =>  $request['level'],
                 'password'      =>  $request['password']
             ]);
-    
+
             $faculty = $this->faculty->create([
                 'index_number'  =>  $request['index_number'],
                 'faculty'       => $request['faculty_name']
             ]);
-    
+
             $program = $this->program->create([
                 'index_number'  =>  $request['index_number'],
                 'program'       => $request['program_name']
             ]);
-    
+
             $programOption = $this->programOption->create([
                 'index_number'  =>  $request['index_number'],
                 'program_option'=> $request['Option_name']
             ]);
-    
+
             $programStatus = $this->programStatus->create([
                 'index_number'  =>  $request['index_number'],
                 'program_status' => $request['ProgStatus']
             ]);
-    
+
             $nationality = $this->nationality->create([
                 'index_number'  =>  $request['index_number'],
                 'country'       => $request['country_name']
             ]);
-    
+
             $studentStatus = $this->studentStatus->create([
                 'index_number'  =>  $request['index_number'],
                 'student_status'=> $request['status']
             ]);
 
-            if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus) 
+            if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus)
             {
                 DB::commit();
             }else{
                 DB::rollBack();
             }
-    
+
         } catch (\Exception $exception) {
             DB::rollBack();
+            return redirect()->back();
         }
 
         Alert::success('Congratulation', 'You have successfully registered for an account');
@@ -183,14 +184,14 @@ class PagesController extends Controller
             'password'           =>     'required|min:8|max:100',
         ]);
 
-        // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
-        // {
-        //     Alert::toast('You have successfully login','success');
-        //     return redirect()->route('pages.home');
-        // } else {
-        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
-        //     return redirect()->route('pages.login');
-        // }
+        if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        {
+            Alert::toast('You have successfully login','success');
+            return redirect()->route('pages.home');
+        } else {
+            Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+            return redirect()->route('pages.login');
+        }
     }
 
     public function logout()
