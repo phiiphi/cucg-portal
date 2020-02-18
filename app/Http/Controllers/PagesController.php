@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Student;
+use App\Faculty;
+use App\Program;
+use App\Nationality;
+use App\ProgramOption;
+use App\ProgramStatus;
+use App\ProgranStatus;
+use App\StudentStatus;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -67,14 +74,22 @@ class PagesController extends Controller
     public function formvalidation($request)
     {
         return $this->validate($request, [
-            'name'               =>     'required|min:10|max:255',
-            'index_number'       =>     'required|min:13|max:13|unique:students,index_number',
+            'last_name'          =>     'required|min:3|max:255',
+            'other_names'        =>     'required|min:3|max:255',
+            "gender"             =>     'required',
+            'program'            =>     'required',
+            'program_option'     =>     'required',
+            'level'              =>     'required',
+            'student_status'     =>     'required',
+            'program_status'     =>     'required',
+            'index_number'       =>     'required|min:13|max:13|unique:students,index_number',  #|exists:registry_biodatas,Student Number unique:students,index_number
             'faculty'            =>     'required',
-            'email'              =>     'required|email|unique:students|max:255',
-            'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone,except,id',  #regex:/(0233)[0-9]{9}/
+            'email'              =>     'required|email|max:255|unique:students', 
+            'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
             'country'            =>     'required',
             'password'           =>     'required|confirmed|min:8|max:50',
         ]);
+
     }
 
 
@@ -83,8 +98,47 @@ class PagesController extends Controller
         $this->formvalidation($request);
         $request['password'] = bcrypt($request->password);
 
-        #create instance of student table and save data
-        Student::create($request->all());
+        Student::create([
+            'index_number'  =>  $request['index_number'],
+            'last_name'     =>  $request['last_name'],
+            'other_names'   =>  $request['other_names'],
+            'phone'         =>  $request['phone'],
+            'email'         =>  $request['email'],
+            'gender'        =>  $request['gender'],
+            'level'         => $request['level'],
+            'password'      => $request['password']
+        ]);
+
+        Faculty::create([
+            'index_number'  =>  $request['index_number'],
+            'faculty'       => $request['faculty_name']
+        ]);
+
+        Program::create([
+            'index_number'  =>  $request['index_number'],
+            'program'       => $request['program_name']
+        ]);
+
+        ProgramOption::create([
+            'index_number'  =>  $request['index_number'],
+            'program_option'=> $request['Option_name']
+        ]);
+
+        ProgramStatus::create([
+            'index_number'  =>  $request['index_number'],
+            'program_status' => $request['ProgStatus']
+        ]);
+
+        Nationality::create([
+            'index_number'  =>  $request['index_number'],
+            'country'       => $request['country_name']
+        ]);
+
+        StudentStatus::create([
+            'index_number'  =>  $request['index_number'],
+            'student_status'=> $request['status']
+        ]);
+
         Alert::success('Congratulation', 'You have successfully registered for an account');
         return redirect()->route('pages.login');
 
@@ -103,14 +157,14 @@ class PagesController extends Controller
             'password'           =>     'required|min:8|max:100',
         ]);
 
-        if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
-        {
-            Alert::toast('You have successfully login','success');
-            return redirect()->route('pages.home');
-        } else {
-            Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
-            return redirect()->route('pages.login');
-        }
+        // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        // {
+        //     Alert::toast('You have successfully login','success');
+        //     return redirect()->route('pages.home');
+        // } else {
+        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+        //     return redirect()->route('pages.login');
+        // }
     }
 
     public function logout()
