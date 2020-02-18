@@ -10,7 +10,9 @@ class Program extends Model
 {
     protected $primaryKey = 'program_id';
     public $incrementing = false;
-    protected $guarded = [];
+    protected $fillable = [
+        'program_id','index_number','program_name'
+    ];
 
     public static function boot()
     {

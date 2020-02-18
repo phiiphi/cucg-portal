@@ -11,7 +11,9 @@ class Nationality extends Model
 {
     protected $primaryKey = 'country_id';
     public $incrementing = false;
-    protected $guarded = [];
+    protected $fillable = [
+        'country_id','index_number','country_name'
+    ];
 
     public static function boot()
     {

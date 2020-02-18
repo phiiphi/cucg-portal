@@ -11,7 +11,9 @@ class ProgramOption extends Model
 {
     protected $primaryKey = 'ProgramOpt_id';
     public $incrementing = false;
-    protected $guarded = [];
+    protected $fillable = [
+        'ProgramOpt_id','index_number','Option_name'
+    ];
 
     public static function boot()
     {

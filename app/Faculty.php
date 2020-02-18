@@ -10,7 +10,9 @@ class Faculty extends Model
 {
     protected $primaryKey = 'faculty_id';
     public $incrementing = false;
-    protected $guarded = [];
+    protected $fillable = [
+        'faculty_id','index_number','faculty_name'
+    ];
 
     public static function boot()
     {

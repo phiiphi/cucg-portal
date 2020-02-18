@@ -10,7 +10,9 @@ class StudentStatus extends Model
 {
     protected $primaryKey = 'StudStatus_id';
     public $incrementing = false;
-    protected $guarded = [];
+    protected $fillable = [
+        'StudStatus_id','index_number','status'
+    ];
 
     public static function boot()
     {
