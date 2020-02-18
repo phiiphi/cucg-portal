@@ -14,7 +14,7 @@ class CreateStudentStatusesTable extends Migration
     public function up()
     {
         Schema::create('student_statuses', function (Blueprint $table) {
-            $table->string('StudStatus_id');
+            $table->string('StudStatus_id')->primary();
             $table->string('index_number');
             $table->foreign('index_number')->references('index_number')->on('students')->onDelete('cascade');
             $table->string('status');

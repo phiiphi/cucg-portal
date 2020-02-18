@@ -160,7 +160,11 @@ class PagesController extends Controller
             }else{
                 DB::rollBack();
             }
+<<<<<<< HEAD
 
+=======
+            return redirect()->back();
+>>>>>>> 024774249d367f6bdc427dd8e6288430523abc2d
         } catch (\Exception $exception) {
             DB::rollBack();
             return redirect()->back();
