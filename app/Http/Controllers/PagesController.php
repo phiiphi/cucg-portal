@@ -88,7 +88,7 @@ class PagesController extends Controller
     public function formvalidation($request)
     {
         return $this->validate($request, [
-            'last_name'          =>     'required|min:3|max:255',
+            'last_name'          =>     'required|min:3|max:255|exists:registry_biodatas,Lastname',
             'other_names'        =>     'required|min:3|max:255',
             "gender"             =>     'required',
             'program'            =>     'required',
@@ -96,7 +96,7 @@ class PagesController extends Controller
             'level'              =>     'required',
             'student_status'     =>     'required',
             'program_status'     =>     'required',
-            'index_number'       =>     'required|min:13|max:13|unique:students,index_number',  #|exists:registry_biodatas,Student Number unique:students,index_number
+            'index_number'       =>     'required|min:13|max:13|unique:students,index_number|exists:registry_biodatas,Student Number',  #|exists:registry_biodatas,Student Number unique:students,index_number
             'faculty'            =>     'required',
             'email'              =>     'required|email|max:255|unique:students',
             'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
