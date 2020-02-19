@@ -7,6 +7,11 @@
             <div class="card-header text-center"><img src="{{asset('/images/slogo1.png')}}" alt="school logo"/> CATHOLIC UNIVERSITY COLLEGE OF GHANA</div>
 
                 <div class="card-body">
+                    @if(session::has('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{session::get('message')}}
+                        </div>
+                    @endif
                     <form class="registration" id="registration" method="post" action="{{route('pages.loginstore')}}">
                         @csrf
 

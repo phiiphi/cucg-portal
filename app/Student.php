@@ -13,8 +13,12 @@ class Student extends Model
     // public $incrementing  = false;
     #mass assignable attributes/fields
     protected $fillable = [
-        'index_number','last_name', 'other_names', 'email', 'phone','gender','level', 'password'
+        'index_number','last_name', 'other_names', 'email', 'phone','code','isverified','gender','level', 'password'
     ];
+
+    // protected $hidden = [
+    //     'password','remember_token'
+    // ];
 
     public function verifyUser()
     {

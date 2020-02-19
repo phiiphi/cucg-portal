@@ -19,8 +19,9 @@ class CreateStudentsTable extends Migration
             $table->string('last_name');
             $table->string('other_names');
             $table->string('email')->unique();
-            $table->boolean('isverified')->default(false);
-            $table->integer('phone')->unique();
+            $table->string('phone')->unique()->nullable();
+            $table->string('code')->nullable();
+            $table->boolean('isverified')->default(0);
             $table->string('gender');
             $table->integer('level');
             $table->string('password');

@@ -16,6 +16,7 @@ use App\StudentStatus;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
+use App\SendCode;
 
 class PagesController extends Controller
 {
@@ -64,6 +65,7 @@ class PagesController extends Controller
         }else{
             $student    = Auth::user();
             $activities = AcademicCalendar::all();
+            Alert::toast('Great job! login successfully','success');
             return view('frontend.pages.home', compact('activities','student'));
         }
 
@@ -96,7 +98,7 @@ class PagesController extends Controller
             'program_status'     =>     'required',
             'index_number'       =>     'required|min:13|max:13|unique:students,index_number',  #|exists:registry_biodatas,Student Number unique:students,index_number
             'faculty'            =>     'required',
-            'email'              =>     'required|email|max:255|unique:students', 
+            'email'              =>     'required|email|max:255|unique:students',
             'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
             'country'            =>     'required',
             'password'           =>     'required|confirmed|min:8|max:50',
@@ -118,55 +120,63 @@ class PagesController extends Controller
                 'last_name'     =>  $request->last_name,
                 'other_names'   =>  $request->other_names,
                 'phone'         =>  $request->phone,
+                'isverified' =>  0,
                 'email'         =>  $request->email,
                 'gender'        =>  $request->gender,
                 'level'         =>  $request->level,
                 'password'      =>  $request->password
             ]);
-    
+
             $faculty = $this->faculty->create([
                 'student_id'    => $students->index_number,
                 'faculty_name'       => $request->faculty
             ]);
-    
+
             $program = $this->program->create([
                 'student_id'    => $students->index_number,
                 'program_name'       => $request->program
             ]);
-    
+
             $programOption = $this->programOption->create([
                 'student_id'  => $students->index_number,
                 'Option_name'=> $request->program_option
             ]);
-    
+
             $programStatus = $this->programStatus->create([
                 'student_id'  =>  $students->index_number,
                 'ProgStatus'  => $request->program_status
             ]);
-    
+
             $nationality = $this->nationality->create([
                 'student_id'   => $students->index_number,
                 'country_name'       => $request->country
             ]);
-    
+
             $studentStatus = $this->studentStatus->create([
                 'student_id'  =>  $students->index_number,
                 'status'=> $request->student_status
             ]);
 
-            if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus) 
+            #send verification code
+            if($students)
+            {
+                $students->code = SendCode::sendCode($students->phone);
+                $students->save();
+            }
+
+            if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus)
             {
                 DB::commit();
+                Alert::success('Congratulation', 'You have successfully registered for an account');
+                return redirect()->route('pages.verify');
             }else{
                 DB::rollBack();
+                Alert::error('oop!s', 'Something went wrong');
+                return redirect()->route('pages.signup');
             }
-            return redirect()->back();
         } catch (\Exception $exception) {
             DB::rollBack();
         }
-
-        Alert::success('Congratulation', 'You have successfully registered for an account');
-        return redirect()->route('pages.login');
 
     }
 

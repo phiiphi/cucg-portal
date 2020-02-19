@@ -24,6 +24,10 @@ Route::get('/profile', 'PagesController@profile')->name('pages.profile');
 Route::get('/logout', 'PagesController@logout')->name('pages.logout');
 Route::resource('course_registrations', 'CourseRegistrationController');
 
+/* PHONE VERIFICATION */
+Route::get('/verify', 'VerifyController@getVerify')->name('pages.verify');
+Route::post('/verified', 'VerifyController@postVerify')->name('pages.verified');
+
 /* Course Registration Routes */
 Route::get('/home/registration', 'CourseRegistrationController@personalInfo')->name('courseRegistration.forms.personalInfo');
 Route::get('/home/registration/registrationDetails', 'CourseRegistrationController@registrationDetails')->name('courseRegistration.forms.registrationDetails');
