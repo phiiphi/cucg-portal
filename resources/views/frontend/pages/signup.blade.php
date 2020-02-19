@@ -10,7 +10,7 @@
                 <form method="post" action="{{route('pages.registerstore')}}">
                     @csrf
                     {{--LAST NAME--}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="last_name" class="col-md-2 col-form-label text-md-right">Last Name</label>
                         <div class="col-md-3">
                             <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus placeholder="please enter last name" minlength="3" maxlength="100">
@@ -32,12 +32,12 @@
                                 </span>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{--INDEX NUMBER--}}
                     <div class="form-group row">
-                        <label for="index_number" class="col-md-2 col-form-label text-md-right">Index Number</label>
-                        <div class="col-md-3">
+                        <label for="index_number" class="col-md-4 col-form-label text-md-right">Index Number</label>
+                        <div class="col-md-6">
                             <input id="index_number" type="text" class="form-control @error('index_number') is-invalid @enderror" name="index_number" value="{{ old('index_number') }}" required autocomplete="index_number" autofocus placeholder="example: ugr0201610162" minlength="13" maxlength="13">
 
                             @error('index_number')
@@ -49,18 +49,18 @@
 
 
                         {{--Gender--}}
-                        <label for="gender" class="col-md-2 col-form-label text-md-right"> Gender</label>
+                        {{-- <label for="gender" class="col-md-2 col-form-label text-md-right"> Gender</label>
                             <div class="col-md-3">
                                 <select name="gender" id="gender" required>
                                     <option value="Select Your Faculty">Select Your Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
-                            </div>
+                            </div> --}}
                     </div>
 
                         {{--EMAIL--}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="email" class="col-md-2 col-form-label text-md-right">E-Mail Address</label>
                         <div class="col-md-3">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="eg: charlesbasoah93@gmail.com">
@@ -70,10 +70,10 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         {{-- PHONE NUMBER--}}
-                        <label for="phone" class="col-md-2 col-form-label text-md-right">Phone Number</label>
+                        {{-- <label for="phone" class="col-md-2 col-form-label text-md-right">Phone Number</label>
                         <div class="col-md-3">
                             <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="example: 054XXXXXXX" minlength="10" maxlength="10">
 
@@ -83,10 +83,10 @@
                                 </span>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{--FACULTY--}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="faculty" class="col-md-2 col-form-label text-md-right">Faculty</label>
                         <div class="col-md-3">
                             <select name="faculty" id="faculty" required>
@@ -99,10 +99,10 @@
                                 <option value="Religious Studies">Religious Studies</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
 
                 {{--PRograms--}}
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <label for="program" class="col-md-2 col-form-label text-md-right">Program</label>
                     <div class="col-md-3">
                         <select name="program" id="program" required>
@@ -112,10 +112,10 @@
                             <option value="Acutrial Science">Acutrial Science</option>
                             <option value="Nursing">Nursing</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     {{--PRograms options--}}
-                    <label for="program_option" class="col-md-2 col-form-label text-md-right">Program Option</label>
+                    {{-- <label for="program_option" class="col-md-2 col-form-label text-md-right">Program Option</label>
                     <div class="col-md-3">
                         <select name="program_option" id="program_option" required>
                             <option value="Select Your Program">Select Your Program Option</option>
@@ -129,10 +129,10 @@
 
                         </select>
                     </div>
-                </div>
+                </div> --}}
 
                     {{--COUNTRY--}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="country" class="col-md-2 col-form-label text-md-right">Choose Country</label>
                         <div class="col-md-3">
                             <select name="country" id="country">
@@ -143,10 +143,10 @@
                                 <option value="Togo">Togo</option>
                                 <option value="Benin">Benin</option>
                             </select>
-                        </div>
+                        </div> --}}
 
                         {{--level--}}
-                        <label for="level" class="col-md-2 col-form-label text-md-right">Level</label>
+                        {{-- <label for="level" class="col-md-2 col-form-label text-md-right">Level</label>
                         <div class="col-md-3">
                             <select name="level" id="level">
                                 <option value="Select Your level">Select Your level</option>
@@ -156,10 +156,10 @@
                                 <option value="400">400</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{--Student status--}}
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                     <label for="student_status" class="col-md-2 col-form-label text-md-right">Student Status</label>
                     <div class="col-md-3">
                         <select name="student_status" id="student_status">
@@ -168,10 +168,10 @@
                             <option value="Weekend">Weekend</option>
                             <option value="Sandwhich">Sandwhich</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     {{--program status--}}
-                    <label for="program_status" class="col-md-2 col-form-label text-md-right">Program Status</label>
+                    {{-- <label for="program_status" class="col-md-2 col-form-label text-md-right">Program Status</label>
                     <div class="col-md-3">
                         <select name="program_status" id="program_status">
                             <option value="Select Your Program Status">Select Your Program Status</option>
@@ -180,11 +180,11 @@
                             <option value="Diploma">Diploma</option>
                         </select>
                     </div>
-                </div>
+                </div> --}}
                     {{--PASSWORD--}}
                     <div class="form-group row">
-                        <label for="password" class="col-md-2 col-form-label text-md-right">Password</label>
-                        <div class="col-md-3">
+                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                        <div class="col-md-6">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="please enter password">
 
                             @error('password')
@@ -193,10 +193,11 @@
                                 </span>
                             @enderror
                         </div>
-
+                    </div>
+                    <div class="form-group row">
                         {{--Confirm PASSWORD--}}
-                        <label for="password-confirm" class="col-md-2 col-form-label text-md-right">Confirm Password</label>
-                        <div class="col-md-3">
+                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                        <div class="col-md-6">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="please repeat password">
                         </div>
                     </div>

@@ -88,20 +88,20 @@ class PagesController extends Controller
     public function formvalidation($request)
     {
         return $this->validate($request, [
-            'last_name'          =>     'required|min:3|max:255|exists:registry_biodatas,Lastname',
-            'other_names'        =>     'required|min:3|max:255',
-            "gender"             =>     'required',
-            'program'            =>     'required',
-            'program_option'     =>     'required',
-            'level'              =>     'required',
-            'student_status'     =>     'required',
-            'program_status'     =>     'required',
-            'index_number'       =>     'required|min:13|max:13|unique:students,index_number|exists:registry_biodatas,Student Number',  #|exists:registry_biodatas,Student Number unique:students,index_number
-            'faculty'            =>     'required',
-            'email'              =>     'required|email|max:255|unique:students',
-            'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
-            'country'            =>     'required',
-            'password'           =>     'required|confirmed|min:8|max:50',
+            // 'last_name'          =>     'required|min:3|max:255|exists:registry_biodatas,Lastname',
+            // 'other_names'        =>     'required|min:3|max:255',
+            // "gender"             =>     'required',
+            // 'program'            =>     'required',
+            // 'program_option'     =>     'required',
+            // 'level'              =>     'required',
+            // 'student_status'     =>     'required',
+            // 'program_status'     =>     'required',
+            'index_number'       =>     'required|min:13|max:13|unique:students,index_number|exists:registry_biodatas,Student Number',
+            // 'faculty'            =>     'required',
+            // 'email'              =>     'required|email|max:255|unique:students',
+            // 'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
+            // 'country'            =>     'required',
+            //'password'           =>     'required|confirmed|min:8|max:50',
         ]);
 
     }
@@ -110,73 +110,75 @@ class PagesController extends Controller
     public function registerstore(Request $request)
     {
         $this->formvalidation($request);
-        $request['password'] = bcrypt($request->password);
 
-        DB::beginTransaction();
+        
+    # $request['password'] = bcrypt($request->password);
 
-        try {
-            $students = $this->students->create([
-                'index_number'  =>  $request->index_number,
-                'last_name'     =>  $request->last_name,
-                'other_names'   =>  $request->other_names,
-                'phone'         =>  $request->phone,
-                'isverified' =>  0,
-                'email'         =>  $request->email,
-                'gender'        =>  $request->gender,
-                'level'         =>  $request->level,
-                'password'      =>  $request->password
-            ]);
+        // DB::beginTransaction();
 
-            $faculty = $this->faculty->create([
-                'student_id'    => $students->index_number,
-                'faculty_name'       => $request->faculty
-            ]);
+        // try {
+        //     $students = $this->students->create([
+        //         'index_number'  =>  $request->index_number,
+        //         'last_name'     =>  $request->last_name,
+        //         'other_names'   =>  $request->other_names,
+        //         'phone'         =>  $request->phone,
+        //         'isverified' =>  0,
+        //         'email'         =>  $request->email,
+        //         'gender'        =>  $request->gender,
+        //         'level'         =>  $request->level,
+        //         'password'      =>  $request->password
+        //     ]);
 
-            $program = $this->program->create([
-                'student_id'    => $students->index_number,
-                'program_name'       => $request->program
-            ]);
+        //     $faculty = $this->faculty->create([
+        //         'student_id'    => $students->index_number,
+        //         'faculty_name'       => $request->faculty
+        //     ]);
 
-            $programOption = $this->programOption->create([
-                'student_id'  => $students->index_number,
-                'Option_name'=> $request->program_option
-            ]);
+        //     $program = $this->program->create([
+        //         'student_id'    => $students->index_number,
+        //         'program_name'       => $request->program
+        //     ]);
 
-            $programStatus = $this->programStatus->create([
-                'student_id'  =>  $students->index_number,
-                'ProgStatus'  => $request->program_status
-            ]);
+        //     $programOption = $this->programOption->create([
+        //         'student_id'  => $students->index_number,
+        //         'Option_name'=> $request->program_option
+        //     ]);
 
-            $nationality = $this->nationality->create([
-                'student_id'   => $students->index_number,
-                'country_name'       => $request->country
-            ]);
+        //     $programStatus = $this->programStatus->create([
+        //         'student_id'  =>  $students->index_number,
+        //         'ProgStatus'  => $request->program_status
+        //     ]);
 
-            $studentStatus = $this->studentStatus->create([
-                'student_id'  =>  $students->index_number,
-                'status'=> $request->student_status
-            ]);
+        //     $nationality = $this->nationality->create([
+        //         'student_id'   => $students->index_number,
+        //         'country_name'       => $request->country
+        //     ]);
 
-            #send verification code
-            if($students)
-            {
-                $students->code = SendCode::sendCode($students->phone);
-                $students->save();
-            }
+        //     $studentStatus = $this->studentStatus->create([
+        //         'student_id'  =>  $students->index_number,
+        //         'status'=> $request->student_status
+        //     ]);
 
-            if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus)
-            {
-                DB::commit();
-                Alert::success('Congratulation', 'You have successfully registered for an account');
-                return redirect()->route('pages.verify');
-            }else{
-                DB::rollBack();
-                Alert::error('oop!s', 'Something went wrong');
-                return redirect()->route('pages.signup');
-            }
-        } catch (\Exception $exception) {
-            DB::rollBack();
-        }
+        //     #send verification code
+        //     if($students)
+        //     {
+        //         $students->code = SendCode::sendCode($students->phone);
+        //         $students->save();
+        //     }
+
+        //     if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus)
+        //     {
+        //         DB::commit();
+        //         Alert::success('Congratulation', 'You have successfully registered for an account');
+        //         return redirect()->route('pages.verify');
+        //     }else{
+        //         DB::rollBack();
+        //         Alert::error('oop!s', 'Something went wrong');
+        //         return redirect()->route('pages.signup');
+        //     }
+        // } catch (\Exception $exception) {
+        //     DB::rollBack();
+        // }
 
     }
 

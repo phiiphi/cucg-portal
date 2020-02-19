@@ -7,9 +7,9 @@
                 <div class="card-header">{{ __('Verify Your Phone Number') }}</div>
 
                 <div class="card-body">
-                    @if (session::has('message'))
+                    @if (Session::has('message'))
                     <div class="alert alert-danger" role="alert">
-                        {{session::get('message')}}
+                        {{Session::get('message')}}
                     </div>
                     @endif
                     Please enter the code sent to your number: {{session('phone')}}
