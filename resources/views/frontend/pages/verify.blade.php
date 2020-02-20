@@ -12,7 +12,7 @@
                         {{Session::get('message')}}
                     </div>
                     @endif
-                    Please enter the code sent to your number: {{ $phone_number->phone_number ?? ''}}
+                    Please enter the code sent to your number: {{ $phone_number->p ?? ''}}
                     <form action="{{route('pages.verified')}}" method="post">
                         @csrf
                         <div class="form-group row">

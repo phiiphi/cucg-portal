@@ -6,6 +6,7 @@ use App\AcademicCalendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Support\Facades\Hash;
 use App\Student;
 use App\Faculty;
 use App\Program;
@@ -131,7 +132,7 @@ class PagesController extends Controller
         }
         #send success message
         Alert::success('Congratulation', 'You have successfully registered for an account');
-        return redirect()->route('pages.verify', compact('phone_number'));
+        return redirect()->route('pages.verify')->with(compact('phone_number'));
         
                 
             
@@ -216,18 +217,31 @@ class PagesController extends Controller
     public function loginstore(Request $request)
     {
         $this->validate($request, [
-            'index_number'       =>     'required|min:13|max:13',
+            'index_number'       =>     'required|min:13|max:13|exists:registry_biodatas,Student Number',
             'password'           =>     'required|min:8|max:100',
         ]);
-
-        if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        
+        # $request['password'] = bcrypt($request->password);
+        $password =  RegisteredCourse::where('studentid',$request->index_number)->value('password');
+        if(Hash::check( $request->index_number, $password ))
         {
             Alert::toast('You have successfully login','success');
             return redirect()->route('pages.home');
-        } else {
-            Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+        }
+        else{
+            
+            Alert::toast('Oops! incorrect password. try again ','error');
             return redirect()->route('pages.login');
         }
+
+        // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        // {
+        //     Alert::toast('You have successfully login','success');
+        //     return redirect()->route('pages.home');
+        // } else {
+        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+        //     return redirect()->route('pages.login');
+        // }
     }
 
     public function logout()

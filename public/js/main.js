@@ -1,8 +1,13 @@
-$('#edit').on('show.bs.model', function (event) {
-    var button = $(event.relatedTarget)
-    var week = button.data('myweek')
-
-    var modal = $(this)
-    modal.find('.modal-body select').val(week)
-
+$(window).on("load",function(){
+    $(".loader-wrapper").fadeOut("slow");
 });
+
+// $('#edit').on('show.bs.model', function (event) {
+//     var button = $(event.relatedTarget)
+//     var week = button.data('myweek')
+
+//     var modal = $(this)
+//     modal.find('.modal-body select').val(week)
+
+// });
+
