@@ -113,12 +113,13 @@ class PagesController extends Controller
     public function registerstore(Request $request)
     {
         $this->formvalidation($request);
+        try
+        {
+            #Retriving fields
+            $phone_number = RegisteredCourse::where('studentid',$request->index_number)->value('phone');
+            $index_number = RegisteredCourse::where('studentid',$request->index_number)->value('studentid');
+            #$email = RegisteredCourse::where('index_number',$request->index_number)->value('email');
 
-        #Retriving fields
-        $phone_number = RegisteredCourse::where('studentid',$request->index_number)->value('phone');
-        $index_number = RegisteredCourse::where('studentid',$request->index_number)->value('studentid');
-        #$email = RegisteredCourse::where('index_number',$request->index_number)->value('email');
-        
         #save index_number
         $students = $this->students->create([
             'index_number' => $index_number
@@ -132,12 +133,23 @@ class PagesController extends Controller
         }
         #send success message
         Alert::success('Congratulation', 'You have successfully registered for an account');
-        return redirect()->route('pages.verify')->with(compact('phone_number'));
-        
-                
-            
+        return view('frontend.pages.verify', ['phone_number'=>$phone_number]);
 
-        
+        }
+        catch (\Exception $exception) {
+            DB::rollBack();
+            return view('frontend.pages.signup');
+            Alert::toast('Regitration Unsecceful, Try again','error');
+        }
+
+
+
+        // return redirect()->route('pages.verify')->with(compact('phone_number'));
+
+
+
+
+
     # $request['password'] = bcrypt($request->password);
 
         // DB::beginTransaction();
@@ -220,8 +232,8 @@ class PagesController extends Controller
             'index_number'       =>     'required|min:13|max:13|exists:registry_biodatas,Student Number',
             'password'           =>     'required|min:8|max:100',
         ]);
-        
-        # $request['password'] = bcrypt($request->password);
+
+        #$request['password'] = bcrypt($request->password);
         $password =  RegisteredCourse::where('studentid',$request->index_number)->value('password');
         if(Hash::check( $request->index_number, $password ))
         {
@@ -229,7 +241,7 @@ class PagesController extends Controller
             return redirect()->route('pages.home');
         }
         else{
-            
+
             Alert::toast('Oops! incorrect password. try again ','error');
             return redirect()->route('pages.login');
         }

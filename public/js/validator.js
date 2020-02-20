@@ -136,7 +136,7 @@ var passwordValidityChecks = [
 	},
 	{
 		isInvalid: function(input) {
-			return !input.value.match(/[\!\@\#\$\%\^\&\*]/g);
+			return !input.value.match(/[\!\@\#\$\%\^\&\*\/]/g);
 		},
 		invalidityMessage: 'You need one of the required special characters',
 		element: document.querySelector('label[for="password"] .input-requirements li:nth-child(5)')
