@@ -13,6 +13,7 @@ use App\Nationality;
 use App\ProgramOption;
 use App\ProgramStatus;
 use App\StudentStatus;
+use App\RegisteredCourse;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
@@ -20,16 +21,17 @@ use App\SendCode;
 
 class PagesController extends Controller
 {
-    protected $students,$faculty,$program,$programOption,$nationality,$programStatus,$studentStatus;
+   # protected $students,$faculty,$program,$programOption,$nationality,$programStatus,$studentStatus;
+   protected $students;
     public function __construct()
     {
         $this->students      = new Student();
-        $this->faculty       = new Faculty();
-        $this->program       = new Program();
-        $this->programOption = new ProgramOption();
-        $this->nationality   = new Nationality();
-        $this->programStatus = new ProgramStatus();
-        $this->studentStatus = new StudentStatus();
+        // $this->faculty       = new Faculty();
+        // $this->program       = new Program();
+        // $this->programOption = new ProgramOption();
+        // $this->nationality   = new Nationality();
+        // $this->programStatus = new ProgramStatus();
+        // $this->studentStatus = new StudentStatus();
     }
 
     public function starting()
@@ -96,7 +98,7 @@ class PagesController extends Controller
             // 'level'              =>     'required',
             // 'student_status'     =>     'required',
             // 'program_status'     =>     'required',
-            'index_number'       =>     'required|min:13|max:13|unique:students,index_number|exists:registry_biodatas,Student Number',
+            'index_number'          =>     'required|min:13|max:13|unique:students,index_number|exists:registry_biodatas,Student Number',
             // 'faculty'            =>     'required',
             // 'email'              =>     'required|email|max:255|unique:students',
             // 'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
@@ -110,6 +112,29 @@ class PagesController extends Controller
     public function registerstore(Request $request)
     {
         $this->formvalidation($request);
+
+        #Retriving fields
+        $phone_number = RegisteredCourse::where('studentid',$request->index_number)->value('phone');
+        $index_number = RegisteredCourse::where('studentid',$request->index_number)->value('studentid');
+        #$email = RegisteredCourse::where('index_number',$request->index_number)->value('email');
+        
+        #save index_number
+        $students = $this->students->create([
+            'index_number' => $index_number
+        ]);
+        #send verification code
+        if($students)
+        {
+            $students->code = SendCode::sendCode($phone_number);
+            $students->save();
+
+        }
+        #send success message
+        Alert::success('Congratulation', 'You have successfully registered for an account');
+        return redirect()->route('pages.verify', compact('phone_number'));
+        
+                
+            
 
         
     # $request['password'] = bcrypt($request->password);

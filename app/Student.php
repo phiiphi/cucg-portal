@@ -11,9 +11,9 @@ class Student extends Model
 
     // protected $primaryKey = 'index_number';
     // public $incrementing  = false;
-    #mass assignable attributes/fields
+    #mass assignable attributes/fields 'last_name', 'other_names', 'email', 'phone','gender','level', 'password'
     protected $fillable = [
-        'index_number','last_name', 'other_names', 'email', 'phone','code','isverified','gender','level', 'password'
+        'index_number','code','isverified'
     ];
 
     // protected $hidden = [
