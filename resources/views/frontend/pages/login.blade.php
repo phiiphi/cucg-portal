@@ -32,7 +32,7 @@
                                 <li>Contains at least 1 number</li>
                                 <li>Contains at least 1 lowercase letter</li>
                                 <li>Contains at least 1 uppercase letter</li>
-                                <li>Contains a special character (e.g. @ !)</li>
+                                {{-- <li>Contains a special character (e.g. @ !)</li> --}}
                             </ul>
                         </label>
                         <input type="submit" value="LOGIN">

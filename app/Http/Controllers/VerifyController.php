@@ -18,9 +18,7 @@ class VerifyController extends Controller
             $student->code = null;
             $student->save();
             return redirect()->route('pages.login')->withMessage('Your Account is Activated');
-
         }else{
-            
             return back()->withMessage('Verification code is not correct, please try again');
         }
 

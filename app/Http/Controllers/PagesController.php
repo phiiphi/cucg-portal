@@ -53,10 +53,7 @@ class PagesController extends Controller
         return view('frontend.pages.login');
     }
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+
 
     public function home()
     {
@@ -91,20 +88,8 @@ class PagesController extends Controller
     public function formvalidation($request)
     {
         return $this->validate($request, [
-            // 'last_name'          =>     'required|min:3|max:255|exists:registry_biodatas,Lastname',
-            // 'other_names'        =>     'required|min:3|max:255',
-            // "gender"             =>     'required',
-            // 'program'            =>     'required',
-            // 'program_option'     =>     'required',
-            // 'level'              =>     'required',
-            // 'student_status'     =>     'required',
-            // 'program_status'     =>     'required',
             'index_number'          =>     'required|min:13|max:13|unique:students,index_number|exists:registry_biodatas,Student Number',
-            // 'faculty'            =>     'required',
-            // 'email'              =>     'required|email|max:255|unique:students',
-            // 'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
-            // 'country'            =>     'required',
-            //'password'           =>     'required|confirmed|min:8|max:50',
+
         ]);
 
     }
@@ -113,6 +98,7 @@ class PagesController extends Controller
     public function registerstore(Request $request)
     {
         $this->formvalidation($request);
+        DB::beginTransaction();
         try
         {
             #Retriving fields
@@ -120,39 +106,105 @@ class PagesController extends Controller
             $index_number = RegisteredCourse::where('studentid',$request->index_number)->value('studentid');
             #$email = RegisteredCourse::where('index_number',$request->index_number)->value('email');
 
-        #save index_number
-        $students = $this->students->create([
-            'index_number' => $index_number
-        ]);
-        #send verification code
-        if($students)
+            #save index_number
+            $students = $this->students->create([
+                'index_number' => $index_number
+            ]);
+            #send verification code
+            if($students)
+            {
+                $students->code = SendCode::sendCode($phone_number);
+                $students->save();
+            }
+                 if ($students)
+            {
+                DB::commit();
+                Alert::success('Congratulation', 'You have successfully registered for an account');
+                // return redirect()->route('pages.verify');
+                // return view('frontend.pages.verify', ['phone_number'=>$phone_number]);
+
+            }else{
+                DB::rollBack();
+                Alert::error('oop!s', 'Something went wrong');
+                return redirect()->route('pages.signup');
+            }
+                #send success message
+                Alert::success('Congratulation', 'You have successfully registered for an account');
+                return view('frontend.pages.verify', ['phone_number'=>$phone_number]);
+
+
+        }
+        catch (\Exception $exception)
         {
-            $students->code = SendCode::sendCode($phone_number);
-            $students->save();
-
-        }
-        #send success message
-        Alert::success('Congratulation', 'You have successfully registered for an account');
-        return view('frontend.pages.verify', ['phone_number'=>$phone_number]);
-
-        }
-        catch (\Exception $exception) {
             DB::rollBack();
-            return view('frontend.pages.signup');
-            Alert::toast('Regitration Unsecceful, Try again','error');
+            Alert::toast('Sorry! Registration Unsuccessful, Check Network Status','error');
+            return redirect()->route('pages.signup');
+
+        }
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function loginstore(Request $request)
+    {
+        $this->validate($request, [
+            'index_number'       =>     'required|min:13|max:13|exists:registry_biodatas,Student Number',
+            'password'           =>     'required|min:8|max:100',
+        ]);
+
+        #$request['password'] = bcrypt($request->password);
+        $password =  RegisteredCourse::where('studentid',$request->index_number)->value('password');
+
+        if (Hash::needsRehash($password))
+        {
+            $password = Hash::make('password');
+            Alert::toast('You have successfully login','success');
+            return redirect()->route('pages.home');
+
+        }
+        if(Hash::check( $request->index_number, $password ))
+        {
+            Alert::toast('You have successfully login','success');
+            return redirect()->route('pages.home');
+        }
+        else{
+            Alert::toast('Oops! Invalid password','error');
+            return redirect()->route('pages.login');
         }
 
 
+    }
 
-        // return redirect()->route('pages.verify')->with(compact('phone_number'));
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('pages.login');
+    }
+}
 
 
 
 
+    // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        // {
+        //     Alert::toast('You have successfully login','success');
+        //     return redirect()->route('pages.home');
+        // } else {
+        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+        //     return redirect()->route('pages.login');
+        // }
 
+  // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     # $request['password'] = bcrypt($request->password);
 
-        // DB::beginTransaction();
 
         // try {
         //     $students = $this->students->create([
@@ -217,48 +269,3 @@ class PagesController extends Controller
         // } catch (\Exception $exception) {
         //     DB::rollBack();
         // }
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function loginstore(Request $request)
-    {
-        $this->validate($request, [
-            'index_number'       =>     'required|min:13|max:13|exists:registry_biodatas,Student Number',
-            'password'           =>     'required|min:8|max:100',
-        ]);
-
-        #$request['password'] = bcrypt($request->password);
-        $password =  RegisteredCourse::where('studentid',$request->index_number)->value('password');
-        if(Hash::check( $request->index_number, $password ))
-        {
-            Alert::toast('You have successfully login','success');
-            return redirect()->route('pages.home');
-        }
-        else{
-
-            Alert::toast('Oops! incorrect password. try again ','error');
-            return redirect()->route('pages.login');
-        }
-
-        // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
-        // {
-        //     Alert::toast('You have successfully login','success');
-        //     return redirect()->route('pages.home');
-        // } else {
-        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
-        //     return redirect()->route('pages.login');
-        // }
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('pages.login');
-    }
-}
