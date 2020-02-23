@@ -5,20 +5,13 @@ namespace App\Http\Controllers;
 use App\AcademicCalendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Support\Facades\Hash;
 use App\Student;
-use App\Faculty;
-use App\Program;
-use App\Nationality;
-use App\ProgramOption;
-use App\ProgramStatus;
-use App\StudentStatus;
 use App\RegisteredCourse;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\TryCatch;
 use App\SendCode;
+use App\Libraries\CustompasswordClass;
+use Illuminate\Support\Facades\Hash;
 
 class PagesController extends Controller
 {
@@ -53,11 +46,17 @@ class PagesController extends Controller
         return view('frontend.pages.login');
     }
 
-
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function home()
     {
-        if(!Auth::check())
+        $verify = Student::where('isverified', 1);
+        // echo( $verify);
+
+        if( !$verify )
         {
             Alert::toast('Sorry! only registered users can access that page. kindly register','error');
             return view('frontend.pages.login');
@@ -88,8 +87,20 @@ class PagesController extends Controller
     public function formvalidation($request)
     {
         return $this->validate($request, [
+            // 'last_name'          =>     'required|min:3|max:255|exists:registry_biodatas,Lastname',
+            // 'other_names'        =>     'required|min:3|max:255',
+            // "gender"             =>     'required',
+            // 'program'            =>     'required',
+            // 'program_option'     =>     'required',
+            // 'level'              =>     'required',
+            // 'student_status'     =>     'required',
+            // 'program_status'     =>     'required',
             'index_number'          =>     'required|min:13|max:13|unique:students,index_number|exists:registry_biodatas,Student Number',
-
+            // 'faculty'            =>     'required',
+            // 'email'              =>     'required|email|max:255|unique:students',
+            // 'phone'              =>     'required|min:10|min:10|numeric|unique:students,phone',  #regex:/(0233)[0-9]{9}/
+            // 'country'            =>     'required',
+            //'password'           =>     'required|confirmed|min:8|max:50',
         ]);
 
     }
@@ -98,7 +109,6 @@ class PagesController extends Controller
     public function registerstore(Request $request)
     {
         $this->formvalidation($request);
-        DB::beginTransaction();
         try
         {
             #Retriving fields
@@ -106,40 +116,26 @@ class PagesController extends Controller
             $index_number = RegisteredCourse::where('studentid',$request->index_number)->value('studentid');
             #$email = RegisteredCourse::where('index_number',$request->index_number)->value('email');
 
-            #save index_number
-            $students = $this->students->create([
-                'index_number' => $index_number
-            ]);
-            #send verification code
-            if($students)
-            {
-                $students->code = SendCode::sendCode($phone_number);
-                $students->save();
-            }
-                 if ($students)
-            {
-                DB::commit();
-                Alert::success('Congratulation', 'You have successfully registered for an account');
-                // return redirect()->route('pages.verify');
-                // return view('frontend.pages.verify', ['phone_number'=>$phone_number]);
-
-            }else{
-                DB::rollBack();
-                Alert::error('oop!s', 'Something went wrong');
-                return redirect()->route('pages.signup');
-            }
-                #send success message
-                Alert::success('Congratulation', 'You have successfully registered for an account');
-                return view('frontend.pages.verify', ['phone_number'=>$phone_number]);
-
+        #save index_number
+        $students = $this->students->create([
+            'index_number' => $index_number
+        ]);
+        #send verification code
+        if($students)
+        {
+            $students->code = SendCode::sendCode($phone_number);
+            $students->save();
 
         }
-        catch (\Exception $exception)
-        {
-            DB::rollBack();
-            Alert::toast('Sorry! Registration Unsuccessful, Check Network Status','error');
-            return redirect()->route('pages.signup');
+        #send success message
+        Alert::success('Congratulation', 'You have successfully registered for an account');
+        return view('frontend.pages.verify', ['phone_number'=>$phone_number]);
 
+        }
+        catch (\Exception $exception) {
+            DB::rollBack();
+            return view('frontend.pages.signup');
+            Alert::toast('Regitration Unsecceful, Try again','error');
         }
 
     }
@@ -157,27 +153,28 @@ class PagesController extends Controller
             'password'           =>     'required|min:8|max:100',
         ]);
 
-        #$request['password'] = bcrypt($request->password);
         $password =  RegisteredCourse::where('studentid',$request->index_number)->value('password');
-
-        if (Hash::needsRehash($password))
+        $customPassword = new CustompasswordClass();
+        if($customPassword->convertPasswordToHash($request->password) == $password )
         {
-            $password = Hash::make('password');
-            Alert::toast('You have successfully login','success');
-            return redirect()->route('pages.home');
 
-        }
-        if(Hash::check( $request->index_number, $password ))
-        {
             Alert::toast('You have successfully login','success');
             return redirect()->route('pages.home');
         }
         else{
-            Alert::toast('Oops! Invalid password','error');
+
+            Alert::toast('Oops! incorrect password. try again ','error');
             return redirect()->route('pages.login');
         }
 
-
+        // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
+        // {
+        //     Alert::toast('You have successfully login','success');
+        //     return redirect()->route('pages.home');
+        // } else {
+        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
+        //     return redirect()->route('pages.login');
+        // }
     }
 
     public function logout()
@@ -186,86 +183,3 @@ class PagesController extends Controller
         return redirect()->route('pages.login');
     }
 }
-
-
-
-
-    // if (Auth::attempt(['index_number' => $request->index_number, 'password' => $request->password]))
-        // {
-        //     Alert::toast('You have successfully login','success');
-        //     return redirect()->route('pages.home');
-        // } else {
-        //     Alert::error('Oops!','something went wrong! make sure you are logging in with correct details.');
-        //     return redirect()->route('pages.login');
-        // }
-
-  // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-    # $request['password'] = bcrypt($request->password);
-
-
-        // try {
-        //     $students = $this->students->create([
-        //         'index_number'  =>  $request->index_number,
-        //         'last_name'     =>  $request->last_name,
-        //         'other_names'   =>  $request->other_names,
-        //         'phone'         =>  $request->phone,
-        //         'isverified' =>  0,
-        //         'email'         =>  $request->email,
-        //         'gender'        =>  $request->gender,
-        //         'level'         =>  $request->level,
-        //         'password'      =>  $request->password
-        //     ]);
-
-        //     $faculty = $this->faculty->create([
-        //         'student_id'    => $students->index_number,
-        //         'faculty_name'       => $request->faculty
-        //     ]);
-
-        //     $program = $this->program->create([
-        //         'student_id'    => $students->index_number,
-        //         'program_name'       => $request->program
-        //     ]);
-
-        //     $programOption = $this->programOption->create([
-        //         'student_id'  => $students->index_number,
-        //         'Option_name'=> $request->program_option
-        //     ]);
-
-        //     $programStatus = $this->programStatus->create([
-        //         'student_id'  =>  $students->index_number,
-        //         'ProgStatus'  => $request->program_status
-        //     ]);
-
-        //     $nationality = $this->nationality->create([
-        //         'student_id'   => $students->index_number,
-        //         'country_name'       => $request->country
-        //     ]);
-
-        //     $studentStatus = $this->studentStatus->create([
-        //         'student_id'  =>  $students->index_number,
-        //         'status'=> $request->student_status
-        //     ]);
-
-        //     #send verification code
-        //     if($students)
-        //     {
-        //         $students->code = SendCode::sendCode($students->phone);
-        //         $students->save();
-        //     }
-
-        //     if ($students && $faculty && $program && $programOption && $nationality && $programStatus && $studentStatus)
-        //     {
-        //         DB::commit();
-        //         Alert::success('Congratulation', 'You have successfully registered for an account');
-        //         return redirect()->route('pages.verify');
-        //     }else{
-        //         DB::rollBack();
-        //         Alert::error('oop!s', 'Something went wrong');
-        //         return redirect()->route('pages.signup');
-        //     }
-        // } catch (\Exception $exception) {
-        //     DB::rollBack();
-        // }
