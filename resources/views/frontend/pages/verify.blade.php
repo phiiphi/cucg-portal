@@ -32,8 +32,9 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Verify') }}
+                                <button type="submit" class="btn btn-primary verifyButton">
+                                    <span class="btn-text">{{ __('Verify') }}</span>
+                                    <i class="loading-icon fa fa-spinner fa-spin off"></i>
                                 </button>
                             </div>
                         </div>

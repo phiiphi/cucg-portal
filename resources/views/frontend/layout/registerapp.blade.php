@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -26,7 +27,7 @@
     <div id="app">
 
         {{-- PRE-LOADER--}}
-        {{-- @include('frontend.includes.preloader') --}}
+        @include('frontend.includes.preloader')
 
         {{--Alert --}}
         @include('sweetalert::alert')
@@ -46,6 +47,7 @@
     </div>
 
     <!--js link-->
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/validator.js') }}"></script>

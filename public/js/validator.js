@@ -197,6 +197,9 @@ var submit = document.querySelector('input[type="submit"')
 var form = document.getElementById('registration')
 
 function validate () {
+    var loadingIcon = document.getElementById('loading-icon');
+    loadingIcon.classList.remove('off');
+
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].CustomValidation.checkInput()
     }

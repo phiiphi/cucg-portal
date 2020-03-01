@@ -36,6 +36,11 @@
                             </ul>
                         </label>
                         <input type="submit" value="LOGIN">
+                        <label for="submit" class="off" id="loading-icon">
+                            LOADING <i class="fa fa-spinner fa-spin"></i>
+                        </label>
+                        
+
                         <hr>
                         <div class="container text-center">
                             <a href="http://" class="text-decoration-none">forget password?</a> ||

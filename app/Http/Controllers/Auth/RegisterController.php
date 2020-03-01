@@ -69,14 +69,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],'isverified' =>  0,
-            
+
             'password' => Hash::make($data['password']),
         ]);
-
-        #send verification code
-        if($user){
-            $user->code = SendCode::sendCode($user->phone);
-            $user->save();
-        }
     }
 }
