@@ -42,32 +42,19 @@ class PagesController extends Controller
 
     public function home()
     {
-
-        if(!$this->students)
-        {
-            Alert::toast('Sorry! only registered users can access that page. kindly register','error');
-            return view('frontend.pages.login');
-
-        }else{
-            $student    = Auth::user();
-            $activities = AcademicCalendar::all();
-            Alert::toast('Great job! login successfully','success');
-            return view('frontend.pages.home', compact('activities','student'));
-        }
+        $student    = Auth::user();
+        $activities = AcademicCalendar::all();
+        Alert::toast('Great job! login successfully','success');
+        return view('frontend.pages.home', compact('activities','student'));
 
     }
 
 
     public function profile()
     {
-        if(!Auth::check())
-        {
-            Alert::toast('Sorry! only registered users can access that page. kindly register','error');
-            return view('frontend.pages.login');
-        }else{
-            $student = Auth::user();
-            return view('frontend.pages.profile', compact('student'));
-        }
+        // $student = Auth::user();
+        // return view('frontend.pages.profile', compact('student'));
+
     }
 
 
@@ -109,8 +96,9 @@ class PagesController extends Controller
             }
             catch (\Exception $exception) {
                 DB::rollBack();
+                Alert::toast('Regitration Unsuccessful, Try again','error');
                 return view('frontend.pages.signup');
-                Alert::toast('Regitration Unsecceful, Try again','error');
+                
             }
 
     }

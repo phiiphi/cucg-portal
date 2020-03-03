@@ -14,9 +14,12 @@ class CreateSemesterCoursesTable extends Migration
     public function up()
     {
         Schema::create('semester_courses', function (Blueprint $table) {
-            $table->integer('course_code')->unique();
-
             $table->bigIncrements('id');
+            $table->integer('course_code')->unique();
+            $table->integer('semestercoursesregistration_id');
+
+            $table->foreign('course_code')->references('course_code')->on('courses')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('semestercoursesregistration')->references('id')->on('student_course_registrations')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

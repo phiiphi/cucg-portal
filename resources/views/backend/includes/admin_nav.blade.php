@@ -184,10 +184,10 @@
                         <span class="nav-link-text">Courses</span>
                     </a>
                     <ul class="sidenav-second-level collapse" id="widgets" data-parent="#accordion">
-                        <li> <a href="widget-basic.html">View Courses</a> </li>
-                        <li> <a href="widget-chart.html">Add courses</a> </li>
-                        <li> <a href="widget-chart.html">Edit courses</a> </li>
-                        <li> <a href="widget-chart.html">Delete courses</a> </li>
+                        <li> <a href="{{route('courses.add')}}">Add Courses</a> </li>
+                        <li> <a href="{{route('semestercourse.add')}}">Add Semester Registered courses</a> </li>
+                        <li> <a href="#">Edit courses</a> </li>
+                        <li> <a href="#">Delete courses</a> </li>
                     </ul>
                 </li>
 
@@ -255,7 +255,7 @@
                         <li> <a href="404.html">404 Error</a> </li>
                     </ul>
                 </li> --}}
-                
+
                 {{-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Layouts">
                     <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" data-target="#layouts">
                         <i class="vl_board"></i>
@@ -512,3 +512,5 @@
             <!--/header rightside links-->
         </div>
     </nav>
+
+

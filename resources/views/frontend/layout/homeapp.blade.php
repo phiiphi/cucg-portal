@@ -47,6 +47,7 @@
     </div>
 
     <!--js link-->
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('jquery/jquery.min.js')}}"></script>

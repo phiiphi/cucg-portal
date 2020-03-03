@@ -71,6 +71,8 @@
 <body class="fixed-nav leftnav-floating">
 {{--ALERT MESSAGES--}}
 @include('backend.includes.message')
+    {{--Alert --}}
+    @include('sweetalert::alert')
     {{--NAVBAR--}}
     @include('backend.includes.admin_nav')
 

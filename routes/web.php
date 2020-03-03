@@ -19,8 +19,8 @@ Route::get('/signup', 'PagesController@signup')->name('pages.signup');
 Route::get('/login', 'PagesController@login')->name('pages.login');
 Route::post('/loginauth', 'PagesController@loginstore')->name('pages.loginstore');
 Route::post('/registerauth', 'PagesController@registerstore')->name('pages.registerstore');
-Route::get('/home', 'PagesController@home')->name('pages.home');
-Route::get('/profile', 'PagesController@profile')->name('pages.profile');
+Route::get('/home', 'PagesController@home')->name('pages.home')->middleware('Access');
+Route::get('/profile', 'PagesController@profile')->name('pages.profile')->middleware('Access');
 Route::get('/logout', 'PagesController@logout')->name('pages.logout');
 Route::resource('course_registrations', 'CourseRegistrationController');
 
@@ -53,5 +53,9 @@ Route::post('/admin/store', 'SemesterscalenderAdminController@store')->name('adm
 #load activity
 Route::get('/load-activities', 'ActivityController@loadActivities')->name('routeLoadActivities');
 
+Route::get('/addcourses','CoursesController@importFile' )->name('courses.add');
+Route::post('/import','CoursesController@exportFile' )->name('courses.export');
+Route::get('/addsemestercourses', 'CoursesController@createSemesterCourses')->name('semestercourse.add');
+Route::post('/processcourse', 'CoursesController@processSemesterCourses')->name('semestercourses.process');
 
 #END OF BACKEND ROUTES

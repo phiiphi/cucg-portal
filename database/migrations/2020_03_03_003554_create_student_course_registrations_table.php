@@ -19,10 +19,13 @@ class CreateStudentCourseRegistrationsTable extends Migration
             $table->string('level');
             $table->date('academic_year_id');
             $table->string('program_id');
-            $table->string('program_option');
+            $table->string('program_option_id');
             $table->string('admission_type');
             $table->string('stream');
 
+            $table->foreign('academic_year_id')->references('id')->on('academic_years')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('program_id')->references('id')->on('programs')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('programe_option_id')->references('id')->on('program_options')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
