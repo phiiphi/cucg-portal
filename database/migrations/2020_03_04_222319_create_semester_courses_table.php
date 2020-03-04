@@ -17,10 +17,10 @@ class CreateSemesterCoursesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('semesterRegcourse_id')->unsigned();
             $table->string('course_id')->unique();
-            
+
 
             $table->foreign('course_id')->references('course_code')->on('courses')->onUpdate('cascade')->onDelete('cascade');
-            #$table->foreign('semesterRegcourse_id')->references('id')->on('semester_regcourses');
+            $table->foreign('semesterRegcourse_id')->references('id')->on('semester_regcourses');
             $table->timestamps();
         });
     }
