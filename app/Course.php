@@ -11,6 +11,8 @@ class Course extends Model
         'course_code','course_title','credit_hours'
     ];
 
+    protected $primaryKey = 'course_code';
+
     public function importToDatabase()
     {
         $path = resource_path('pending-files/*.csv');

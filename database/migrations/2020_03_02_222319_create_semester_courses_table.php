@@ -15,11 +15,11 @@ class CreateSemesterCoursesTable extends Migration
     {
         Schema::create('semester_courses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('course_code')->unique();
-            $table->integer('semestercoursesregistration_id');
+            $table->string('course_id')->unique();
+            $table->integer('coursereg_id');
 
-            $table->foreign('course_code')->references('course_code')->on('courses')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('semestercoursesregistration')->references('id')->on('student_course_registrations')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('course_id')->references('course_code')->on('courses')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('coursereg_id')->references('id')->on('student_course_registrations')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
