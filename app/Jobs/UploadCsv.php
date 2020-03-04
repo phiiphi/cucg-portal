@@ -35,8 +35,9 @@ class UploadCsv implements ShouldQueue
     {
         Redis::throttle('upload-csv')->allow(1)->every(5)->then(function () {
             // Job logic...
-            $data = array_map('str_getcsv', file($this->file));
+            dump('Proccessing this file:---', $this->file);
 
+            $data = array_map('str_getcsv', file($this->file));
             foreach($data as $row)
             {
                 Course::updateOrCreate([
@@ -46,6 +47,8 @@ class UploadCsv implements ShouldQueue
                     'credit_hours' => $row[2]
                 ]);
             }
+
+            dump('Done proccessing this file:---', $this->file);
 
             unlink($this->file);
         }, function () {
