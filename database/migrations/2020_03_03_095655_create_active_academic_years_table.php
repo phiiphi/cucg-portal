@@ -14,10 +14,11 @@ class CreateActiveAcademicYearsTable extends Migration
     public function up()
     {
         Schema::create('active_academic_years', function (Blueprint $table) {
-            $table->string('academic_active_id');
-            $table->string('academic_year_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('academicyear_id')->unsigned();
             $table->string('status');
 
+            $table->foreign('academicyear_id')->references('id')->on('academic_years')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
