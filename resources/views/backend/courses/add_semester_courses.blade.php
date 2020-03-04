@@ -30,7 +30,7 @@
                                 <option value="Second Semester" name="semester">Second Semester</option>
                             </select>
                         </div>
-                        
+
                         <div class="col-md-4 mb-3">
                             <label class="text-uppercase" for="week">PROGRAMME</label>
                             <select class="custom-select" id="inputGroupSelect01" name="programme">
@@ -90,12 +90,12 @@
                         </div>
 
                         <div class="col-md-8 mb-3">
-                            <label class="text-uppercase" for="activity">COURSE NAME</label>
+                            <label class="text-uppercase" for="course_name">COURSE NAME</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-book"></i></span>
                                 </div>
-                                <textarea class="form-control" name="activity" aria-label="With textarea"></textarea>
+                                <textarea class="form-control" name="course_name" aria-label="With textarea"></textarea>
                             </div>
                         </div>
                     </div>
