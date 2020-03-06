@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class Program extends Model
 {
-    // protected $primaryKey = 'program_id';
-    // public $incrementing = false;
+    protected $table = 'programs';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    
     protected $fillable = [
-        #'program_id',
-        'student_id','program_name'
+        'id','program_name'
     ];
 
     // public static function boot()

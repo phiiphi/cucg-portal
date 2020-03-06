@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AcademicCalendar;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class SemesterscalenderAdminController extends Controller
 {
@@ -54,6 +56,40 @@ class SemesterscalenderAdminController extends Controller
         $calendar->save();
 
         return redirect('/admin/semestercalendar')->with('success', 'Activity Added to Calendar');
+    }
+
+
+    public function exportFile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|max:10000|mimes:xlsx,xls,csv,txt'
+        ]);
+
+        if ($validator->fails()) {
+            # display error messages
+            Alert::toast('The file format is not supported','error');
+            return redirect()->back();
+        } else {
+            #retrieve file
+            $file = file($request->file->getRealPath());
+            $extension = $request->file->getClientOriginalExtension();
+            $data = array_slice($file,1);
+
+            #break the huge data into parts
+            $parts = (array_chunk($data, 1000));
+
+            foreach($parts as $index=>$part)
+            {
+                $fileName = resource_path('pending-calendar-files/'.date('y-m-d-H-i-s').$index.'.'.$extension);
+                file_put_contents($fileName,$part);
+            }
+
+            $submit = new AcademicCalendar();
+            $submit->importToDatabase();
+
+            Alert::toast('data queued for importing', 'success');
+            return redirect()->route('courses.add');
+        }
     }
 
     /**

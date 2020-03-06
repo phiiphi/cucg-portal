@@ -15,7 +15,7 @@ class Course extends Model
 
     public function importToDatabase()
     {
-        $path = resource_path('pending-files/*.csv');
+        $path = resource_path('pending-course-files/*.csv');
         $files = glob($path);
 
         foreach($files as $file)

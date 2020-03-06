@@ -29,9 +29,9 @@ Route::get('/verify', 'VerifyController@getVerify')->name('pages.verify');
 Route::post('/verified', 'VerifyController@postVerify')->name('pages.verified');
 
 /* Course Registration Routes */
-Route::get('/home/registration', 'CourseRegistrationController@personalInfo')->name('courseRegistration.forms.personalInfo');
-Route::get('/home/registration/registrationDetails', 'CourseRegistrationController@registrationDetails')->name('courseRegistration.forms.registrationDetails');
-Route::get('/home/registration/academicInfo', 'CourseRegistrationController@academicInfo')->name('courseRegistration.forms.academicInfo');
+#Route::get('/home/registration', 'CourseRegistrationController@personalInfo')->name('courseRegistration.forms.personalInfo');
+#Route::get('/home/registration/registrationDetails', 'CourseRegistrationController@registrationDetails')->name('courseRegistration.forms.registrationDetails');
+#Route::get('/home/registration/academicInfo', 'CourseRegistrationController@academicInfo')->name('courseRegistration.forms.academicInfo');
 /* Semester Calendar Routes */
 Route::get('/semestercalendar', 'semesterscalendar@index')->name('calendar.index');
 
@@ -49,13 +49,15 @@ Route::get('/admin/index', 'AdminpagesController@index')->name('admin.index');
 /* Semester Calendar Admin Routes */
 Route::get('/admin/semestercalendar', 'SemesterscalenderAdminController@index')->name('admin.calendar.index');
 Route::get('/admin/create', 'SemesterscalenderAdminController@create')->name('admin.calendar.create');
-Route::post('/admin/store', 'SemesterscalenderAdminController@store')->name('admin.calendar.store');
+Route::get('/admin/update', 'SemesterscalenderAdminController@update')->name('admin.calendar.update');
+Route::post('/admin/import', 'SemesterscalenderAdminController@exportFile')->name('admin.calendar.export');
+
 #load activity
 Route::get('/load-activities', 'ActivityController@loadActivities')->name('routeLoadActivities');
 
-Route::get('/addcourses','CoursesController@importFile' )->name('courses.add');
-Route::post('/import','CoursesController@exportFile' )->name('courses.export');
-Route::get('/addsemestercourses', 'CoursesController@createSemesterCourses')->name('semestercourse.add');
+Route::get('/admin/addcourses','CoursesController@importFile' )->name('courses.add');
+Route::post('/admin/import','CoursesController@exportFile' )->name('courses.export');
+Route::get('/admin/addsemestercourses', 'CoursesController@createSemesterCourses')->name('semestercourse.add');
 Route::post('/processcourse', 'CoursesController@processSemesterCourses')->name('semestercourses.process');
 
 #END OF BACKEND ROUTES

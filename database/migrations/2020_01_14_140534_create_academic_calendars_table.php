@@ -17,9 +17,8 @@ class CreateAcademicCalendarsTable extends Migration
             $table->bigIncrements('id');
             $table->string('week');
             $table->longText('activity')->nullable();
-            $table->string('color',7);
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->string('start');
+            $table->string('end');
 
             $table->timestamps();
             $table->softDeletes();

@@ -14,8 +14,8 @@ class CreateActiveAcademicYearsTable extends Migration
     public function up()
     {
         Schema::create('active_academic_years', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('academicyear_id')->unsigned();
+            $table->string('activeacademic_id')->primary();
+            $table->string('academicyear_id');
             $table->string('status');
 
             $table->foreign('academicyear_id')->references('id')->on('academic_years')->onUpdate('cascade')->onDelete('cascade');

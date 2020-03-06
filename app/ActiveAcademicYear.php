@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActiveAcademicYear extends Model
 {
-    protected $guarded = [];
+    protected $primaryKey = 'activeacademic_id';
+    public $incrementing = false;
+
+    protected $fillable = [
+        'activeacademic_id','academicyear_id','status'
+    ];
 
     #establishing relationship
     public function AcademicYear()

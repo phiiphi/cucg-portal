@@ -8,7 +8,7 @@
             @endforeach
         </ul>
     </div>
-    
+
 @endif --}}
 
 {{--SUCCESS ALERT--}}
@@ -16,11 +16,11 @@
     <div class="alert alert-dismissible alert-success">
         <p class="text-center">{{ \Session::get('success')}}</p>
     </div>
-    
+
 @endif --}}
 
 
-@if(Session('errors'))
+{{-- @if(Session('errors'))
 <div class="alert alert-dismissible alert-danger">
     <ul>
         @foreach ($errors as $error)
@@ -34,4 +34,4 @@
 <div class="alert alert-dismissible alert-success">
     <p class="text-center">{{ session('success')}}</p>
 </div>
-@endif
+@endif --}}
