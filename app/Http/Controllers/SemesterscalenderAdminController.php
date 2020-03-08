@@ -111,8 +111,8 @@ class SemesterscalenderAdminController extends Controller
      */
     public function edit($id)
     {
-        $activity_single = AcademicCalendar::find($id)->findOrFail($id);
-        return view('backend.semestercalendar.index')->with('activity_single', $activity_single);
+        // $activity_single = AcademicCalendar::find($id)->findOrFail($id);
+        // return view('backend.semestercalendar.index')->with('activity_single', $activity_single);
     }
 
     /**

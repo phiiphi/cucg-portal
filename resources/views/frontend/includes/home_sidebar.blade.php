@@ -27,7 +27,7 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link text-center"  href="#">
+          <a class="nav-link text-center"  href="{{route('courseRegistration')}}">
             <span class="text-uppercase text-white">Register Courses</span>
           </a>
         </li>

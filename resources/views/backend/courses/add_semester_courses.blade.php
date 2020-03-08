@@ -6,6 +6,7 @@
         <div class="card-header border-0">
             <div class="custom-title-wrap bar-primary">
                 <div class="custom-title">Add Semester Courses</div>
+                <button href="#" class="btn btn-primary float-right"> Upload a Csv file</button>
             </div>
         </div>
             <div class="card-body">
@@ -31,8 +32,8 @@
                             <label class="text-uppercase" for="week">SEMESTER</label>
                             <select class="custom-select @error('semester') is-invalid @enderror" id="inputGroupSelect01" name="semester">
                                 <option selected>Choose...</option>
-                                <option value="First Semester" name="semester">First Semester</option>
-                                <option value="Second Semester" name="semester">Second Semester</option>
+                                <option value="Semester 1" name="semester">Semester 1</option>
+                                <option value="Semester 2" name="semester">Semester 2</option>
                             </select>
                             @error('semester')
                             <span class="invalid-feedback" role="alert">
@@ -45,10 +46,10 @@
                             <label class="text-uppercase" for="week">PROGRAMME</label>
                             <select class="custom-select @error('programme') is-invalid @enderror" id="inputGroupSelect01" name="programme">
                                 <option selected>Choose...</option>
-                                <option value="BSC Computer Science" name="programme">BSC Computer Science</option>
-                                <option value="BSC Actuarial Science" name="programme">BSC Actuarial Science</option>
-                                <option value="BSC Information Technology" name="programme">BSC Information Technology</option>
-                                <option value="BSC Economics and Bussiness Adminstration" name="programme">BSC Economics and Bussiness Adminstration</option>
+                                <option value="B.Sc. Computer Science" name="programme">B.Sc Computer Science</option>
+                                <option value="B.Sc. Actuarial Science" name="programme">B.Sc Actuarial Science</option>
+                                <option value="B.Sc. Information Technology" name="programme">B.Sc Information Technology</option>
+                                <option value="B.Sc. Economics and Bussiness Adminstration" name="programme">B.Sc Economics and Bussiness Adminstration</option>
                             </select>
                             @error('programme')
                             <span class="invalid-feedback" role="alert">
@@ -81,10 +82,10 @@
                             <label class="text-uppercase" for="week">LEVEL</label>
                             <select class="custom-select @error('programme_option') is-invalid @enderror" id="inputGroupSelect01" name="level">
                                 <option selected>Choose...</option>
-                                <option value="level 100" name="level">level 100</option>
-                                <option value="level 200" name="level">level 200</option>
-                                <option value="level 300" name="level">level 300</option>
-                                <option value="level 400" name="level">level 400</option>
+                                <option value="100" name="level">100</option>
+                                <option value="200" name="level">200</option>
+                                <option value="300" name="level">300</option>
+                                <option value="400" name="level">400</option>
                             </select>
                             @error('level')
                             <span class="invalid-feedback" role="alert">

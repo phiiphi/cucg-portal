@@ -16,7 +16,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class CoursesController extends Controller
 {
-    protected $semester_reg_course, $program, $program_option, $academic_year;
+    protected $semester_reg_course, $program, $program_option, $academic_year,$course;
 
     public function __construct()
     {
@@ -24,7 +24,7 @@ class CoursesController extends Controller
         $this->program             = new Program();
         $this->program_option      = new ProgramOption();
         $this->academic_year       = new AcademicYear();
-
+        $this->course              = new Course();
     }
 
     #IMPORT CSV FILE INTO DATABASE
@@ -98,35 +98,35 @@ class CoursesController extends Controller
         // {
 
             #assign random id
-            $progOptRandom = IdGenerator::generate(['table' => 'program_options', 'length' => 9, 'prefix'=>'PO-']);
+           // $progOptRandom = IdGenerator::generate(['table' => 'program_options', 'length' => 9, 'prefix'=>'PO-']);
             // DB::table('program_options')->insert(['ProgramOpt_id' => $progOptRandom]);
-            $program_option = $this->program_option->create([
-                'id'                =>      $progOptRandom, 
-                'Option_name'       =>      $request->programme_option
-            ]);
+            // $program_option = $this->program_option->create([
+            //     'id'                =>      $progOptRandom, 
+            //     'Option_name'       =>      $request->programme_option
+            // ]);
             
             #assign random id
-            $progRandom = IdGenerator::generate(['table' => 'programs', 'length' => 8, 'prefix'=>'P-']);
+           // $progRandom = IdGenerator::generate(['table' => 'programs', 'length' => 8, 'prefix'=>'P-']);
             // DB::table('program_options')->insert(['ProgramOpt_id' => $progRandom]);
-            $program = $this->program->create([
-                'id'               =>   $progRandom,
-                'program_name'     =>   $request->programme,
-            ]);
+            // $program = $this->program->create([
+            //     'id'               =>   $progRandom,
+            //     'program_name'     =>   $request->programme,
+            // ]);
         
             #assign random id
-            $acaRandom = IdGenerator::generate(['table' => 'academic_years', 'length' => 9, 'prefix'=>'AY-']);
+           // $acaRandom = IdGenerator::generate(['table' => 'academic_years', 'length' => 9, 'prefix'=>'AY-']);
             // DB::table('program_options')->insert(['ProgramOpt_id' => $acaRandom]);
-            $academic_year = $this->academic_year->create([
-                'id'                    => $acaRandom,
-                'academic_year'         => $request->academic_year
-            ]);
+            // $academic_year = $this->academic_year->create([
+            //     'id'                    => $acaRandom,
+            //     'academic_year'         => $request->academic_year
+            // ]);
             //$academic_year->academicyear_id = $acaRandom;
-                
+            
             #assign random id
             $regcourseRandom = IdGenerator::generate(['table' => 'semester_regcourses', 'length' => 9, 'prefix'=>'RC-']);
-            $programOptionId =$program_option->id;
-            $programId = $program->id;
-            $academicYearId = $academic_year->id;
+            // $programOptionId =$program_option->id;
+            // $programId = $program->id;
+            // $academicYearId = $academic_year->id;
             //dd($programOptionId,$programId,$academicYearId);
             $semester_reg_course = $this->semester_reg_course->create([
                 'id'               =>       $regcourseRandom,
@@ -135,12 +135,17 @@ class CoursesController extends Controller
                 'level'             =>      $request->level,
                 'admission_type'    =>      $request->admission_type,
                 'stream'            =>      $request->stream,
-                'programeOptionId'  =>      $programOptionId,
-                'programId'         =>      $programId,
-                'academicYearId'    =>      $academicYearId
+                'programeOption'  =>        $request->programme_option,
+                'program'         =>        $request->programme,
+                'academicYear'    =>        $request->academic_year
             ]);
+            
+            // $semesterRegcourseId = $semester_reg_course->id;
+            // $course = $this->course->create([
+            //     'semesterRegcourse_id' => $semesterRegcourseId
+            // ]);
 
-            if ( $program_option && $program && $academic_year && $semester_reg_course ) 
+            if ( $semester_reg_course) 
             {
                 DB::commit();
                 Alert::toast('Successfully Uploaded','success');

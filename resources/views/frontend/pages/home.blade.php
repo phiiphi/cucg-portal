@@ -39,7 +39,7 @@
                     </div>
                     <div class="card-body bg-success ">
                       <h5 class="card-title text-light"> Register Semester Courses</h5>
-                      <a href="#" class="btn btn-outline-light">Register Now</a>
+                      <a href="{{route('courseRegistration')}}" class="btn btn-outline-light">Register Now</a>
                     </div>
                   </div>
                 </div>

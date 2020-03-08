@@ -23,6 +23,7 @@ class CreateRegisteredCoursesTable extends Migration
             $table->string('dob',50);
             $table->string('nationality',50);
             $table->string('programme',50);
+            $table->string('ProgrammeOption');
             $table->string('level',50);
             $table->string('semester',50);
             $table->string('academic_year',50);

@@ -20,13 +20,13 @@ class CreateSemesterRegcoursesTable extends Migration
             $table->string('level');
             $table->string('admission_type');
             $table->string('stream');
-            $table->string('programeOptionId');
-            $table->string('programId');
-            $table->string('academicYearId');
+            $table->string('programeOption');
+            $table->string('program');
+            $table->string('academicYear');
     
-            $table->foreign('programeOptionId')->references('id')->on('program_options')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('programId')->references('id')->on('programs')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('academicYearId')->references('id')->on('academic_years')->onUpdate('cascade')->onDelete('cascade');
+            #$table->foreign('programeOptionId')->references('id')->on('program_options')->onUpdate('cascade')->onDelete('cascade');
+            #$table->foreign('programId')->references('id')->on('programs')->onUpdate('cascade')->onDelete('cascade');
+            #$table->foreign('academicYearId')->references('id')->on('academic_years')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

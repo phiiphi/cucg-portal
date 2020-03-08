@@ -23,4 +23,9 @@ class Program extends Model
     //         $model->program_id = IdGenerator::generate(['table' => DB::table('programs'), 'length' => 10, 'prefix' => 'PRO-']);
     //     });
     // }
+
+    public function SemesterRegcourse()
+    {
+        return $this->hasMany('App\SemesterRegcourse');
+    }
 }

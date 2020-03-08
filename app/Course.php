@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $fillable = [
-        'course_code','course_title','credit_hours'
+        'course_code','course_title','credit_hours','semesterRegcourse_id'
     ];
 
     protected $primaryKey = 'course_code';
@@ -25,8 +25,8 @@ class Course extends Model
     }
 
     #establishing relationships
-    public function SemesterCourses()
+    public function SemesterRegcourse()
     {
-        return $this->belongsTo('App\SemesterCourses');
+        return $this->belongsTo('App\SemesterRegcourse');
     }
 }

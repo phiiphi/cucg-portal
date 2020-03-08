@@ -19,4 +19,9 @@ class AcademicYear extends Model
     {
         return $this->belongsTo('App\ActiveAcademicYear');
     }
+
+    public function SemesterRegcourse()
+    {
+        return $this->hasMany('App\SemesterRegcourse');
+    }
 }

@@ -74,7 +74,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\RegistryBiodata::class,
+            'model' => App\Student::class,
         ],
 
         // 'super_admins' => [
@@ -84,7 +84,7 @@ return [
 
         'users' => [
             'driver' => 'database',
-            'table' => 'registry_biodatas',
+            'table' => 'students',
         ],
 
         // 'super_admins' => [

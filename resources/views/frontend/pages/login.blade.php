@@ -13,8 +13,7 @@
                         </div>
                     @endif
                     <form class="registration" id="registration" method="post" action="{{route('pages.loginstore')}}">
-                        @csrf
-
+                        {{ csrf_field() }}
                         <label for="index_number">
                             <input type="text" name="index_number" class="form-control form-control-user" id="index_number" value="{{old('')}}" minlength="13" maxlength="13" placeholder="Enter Index Number eg.ugr0201610162" required>
 

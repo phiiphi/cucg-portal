@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <form action="{{route('admin.calendar.export')}}" method="post" enctype="multipart/form-data" class="mt-5">
+        <form action="{{ route('admin.calendar.export') }}" method="post" enctype="multipart/form-data" class="mt-5">
             @csrf
                <!-- Our markup, the important part here! -->
                <div id="drag-and-drop-zone" class="dm-uploader p-5">

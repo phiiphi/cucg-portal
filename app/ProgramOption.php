@@ -13,4 +13,10 @@ class ProgramOption extends Model
     protected $fillable = [
         'id','Option_name'
     ];
+
+    public function SemesterRegcourse()
+    {
+        return $this->hasMany('App\SemesterRegcourse');
+    }
+
 }

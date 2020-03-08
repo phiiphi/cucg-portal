@@ -4,105 +4,52 @@ namespace App\Http\Controllers;
 
 use App\courseRegistration;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\RegisteredCourse;
+use App\SemesterRegcourse;
+use App\Course;
 
 class CourseRegistrationController extends Controller
 {
-    public function personalInfo()
-    {
-        return view('frontend.courseRegistration.forms.personalInfo');
-    }
-
-    public function registrationDetails()
-    {
-        return view('frontend.courseRegistration.forms.registrationDetails');
-    }
-
-    public function academicInfo()
-    {
-        return view('frontend.courseRegistration.forms.academicInfo');
-    }
-
-    public function help()
-    {
-
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $course_registration = courseRegistration::all();
-        return view('frontend.courseRegistration.forms.registrationDetails')->with('course_registration', $course_registration);
+        # stepq1: gets the fields for verifying. that is fields to select the right courses for the student
+        #program,programOption,academic year,level and semester
+
+        #get the login user
+        $currentStudent = Session::get('currentUserId');
+
+        $studentProgramme = RegisteredCourse::where('studentid',$currentStudent)->value('programme');
+        $studentProgrammeOption = RegisteredCourse::where('studentid',$currentStudent)->value('ProgrammeOption');
+        $studentAcademicYear = RegisteredCourse::where('studentid',$currentStudent)->value('academic_year');
+        $studentLevel = RegisteredCourse::where('studentid',$currentStudent)->value('level');
+        $studentSemester = RegisteredCourse::where('studentid',$currentStudent)->value('semester');
+
+        #step2: verify and select the required coreses to display
+        $matchFields = ['semester' => $studentSemester, 'level' => $studentLevel, 'programeOption' => $studentProgrammeOption,
+                    'program' => $studentProgramme, 'academicYear' => $studentAcademicYear];
+
+            $course = SemesterRegcourse::where($matchFields)->get();
+            return view('frontend.courseRegistration.index',compact('course'));
+            
+        // $studentCourses = SemesterRegcourse::all();
+        // foreach($studentCourses as $studentCourse)
+        // {
+        //     $studentProg = $studentCourse->program;
+        //     $studentProgOption = $studentCourse->programeOption;
+        //     $studentAcaYear    = $studentCourse->academicYear;
+        //     $level           = $studentCourse->level;
+        //     $Semester        = $studentCourse->semester;
+        // }
+
+        // dd($Semester);
+        // if($studentProg == $studentProgramme && $studentProgOption == $studentProgrammeOption && $studentAcaYear == $studentAcademicYear && $level == $studentLevel && $Semester == $studentSemester){
+        //     return view('frontend.courseRegistration.index',compact('studentCourses'));
+        // }
+        // else{
+        //     return redirect()->back();
+        // }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request,[
-           ''
-        ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

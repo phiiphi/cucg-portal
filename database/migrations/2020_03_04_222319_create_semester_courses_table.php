@@ -11,27 +11,27 @@ class CreateSemesterCoursesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('semester_courses', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('semesterRegcourse_id');
-            $table->string('course_id')->unique();
+    // public function up()
+    // {
+    //     Schema::create('semester_courses', function (Blueprint $table) {
+    //         $table->bigIncrements('id');
+    //         //$table->string('semesterRegcourse_id');
+    //         $table->string('course_id')->unique();
 
 
-            $table->foreign('course_id')->references('course_code')->on('courses')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('semesterRegcourse_id')->references('id')->on('semester_regcourses')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps();
-        });
-    }
+    //         $table->foreign('course_id')->references('course_code')->on('courses')->onUpdate('cascade')->onDelete('cascade');
+    //        // $table->foreign('semesterRegcourse_id')->references('id')->on('semester_regcourses')->onUpdate('cascade')->onDelete('cascade');
+    //         $table->timestamps();
+    //     });
+    // }
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('semester_courses');
-    }
+//     public function down()
+//     {
+//         Schema::dropIfExists('semester_courses');
+//     }
 }

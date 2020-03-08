@@ -11,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\SendCode;
 use App\Libraries\CustompasswordClass;
+use Illuminate\Support\Facades\Session;
 
 class PagesController extends Controller
 {
@@ -44,7 +45,7 @@ class PagesController extends Controller
     {
         $student    = Auth::user();
         $activities = AcademicCalendar::all();
-        Alert::toast('Great job! login successfully','success');
+        //Alert::toast('Great job! login successfully','success');
         return view('frontend.pages.home', compact('activities','student'));
 
     }
@@ -98,7 +99,7 @@ class PagesController extends Controller
                 DB::rollBack();
                 Alert::toast('Regitration Unsuccessful, Try again','error');
                 return view('frontend.pages.signup');
-                
+
             }
 
     }
@@ -115,14 +116,20 @@ class PagesController extends Controller
             'index_number'       =>     'required|min:13|max:13|exists:registry_biodatas,Student Number',
             'password'           =>     'required|min:8|max:100',
         ]);
-
+        
+        //$studentID =  Student::where('index_number',$request->index_number)->value('index_number');
+       
         $password =  RegisteredCourse::where('studentid',$request->index_number)->value('password');
         $customPassword = new CustompasswordClass();
         if($customPassword->convertPasswordToHash($request->password) == $password )
         {
+            $studentID =  RegisteredCourse::where('studentid',$request->index_number)->value('studentid');
+            // dd($studentID);
+            Session::put('currentUserId', $studentID);
 
             Alert::toast('You have successfully login','success');
             return redirect()->route('pages.home');
+
         }
         else{
 
