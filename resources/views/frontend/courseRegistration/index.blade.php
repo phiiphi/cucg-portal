@@ -20,7 +20,8 @@
                 <ul class="text-center list-unstyled">
                     @foreach ($course as $item)
                     
-                        <li>{{$item->course_name}}</li> 
+                        <li>{{$item->course_name}}</li>
+                        <li>{{$item->Course()->course_code}}</li> 
                         
                     @endforeach 
                     <button class=" btn btn-primary"> proceed to register courses</button>
