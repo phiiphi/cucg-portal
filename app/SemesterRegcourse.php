@@ -2,27 +2,25 @@
 
 namespace App;
 
-use App\Jobs\UploadCsv;
+use App\Jobs\UploadCsvOption;
 use Illuminate\Database\Eloquent\Model;
 
 class SemesterRegcourse extends Model
 {
     protected $table = 'semester_regcourses';
-    protected $primaryKey = 'id';
-    public $incrementing = false;
 
     protected $fillable = [
-        'id','course_name', 'semester', 'programeOption', 'program','academicYear','level','admission_type','stream'
+        'course_code', 'course_name', 'semester', 'programeOption', 'program','academicYear','level','admission_type','stream', 'credit_hours'
     ];
 
     public function SubmitToDatabase()
     {
-        $path = resource_path('pending-course-files/*.csv');
+        $path = resource_path('pending-add-csv-option/*.csv');
         $files = glob($path);
 
         foreach($files as $file)
         {
-            UploadCsv::dispatch($file);
+            UploadCsvOption::dispatch($file);
         }
     }
 

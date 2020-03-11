@@ -11,7 +11,7 @@ class Program extends Model
     protected $table = 'programs';
     protected $primaryKey = 'id';
     public $incrementing = false;
-    
+
     protected $fillable = [
         'id','program_name'
     ];

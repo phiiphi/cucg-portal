@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Redis;
 
-class UploadCsv implements ShouldQueue
+class UploadCsvOption implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -42,10 +42,11 @@ class UploadCsv implements ShouldQueue
             foreach($data as $row)
             {
                 SemesterRegcourse::updateOrCreate([
-                    'course_name'      =>       $row[0],
-                    'semester'         =>       $row[1],
-                    'programOption'    =>       $row[2],
-                    'programeOption'   =>       $row[3],
+                    'course_code' => $row[0]
+                ], [
+                    'course_name'      =>       $row[1],
+                    'semester'         =>       $row[2],
+                    'programOption'    =>       $row[3],
                     'program'          =>       $row[4],
                     'academicYear'     =>       $row[5],
                     'level'            =>       $row[6],

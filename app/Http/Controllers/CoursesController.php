@@ -16,7 +16,7 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class CoursesController extends Controller
 {
-    protected $semester_reg_course, $program, $program_option, $academic_year,$course;
+    protected $semester_reg_course, $program, $program_option, $academic_year,$course,$course_code, $credit_hours;
 
     public function __construct()
     {
@@ -106,7 +106,7 @@ class CoursesController extends Controller
             $submitOp->SubmitToDatabase();
 
             Alert::toast('data queued for importing', 'success');
-            return redirect()->route('courses.add');
+            return redirect()->route('course.addcsv');
         }
     }
 
@@ -126,7 +126,10 @@ class CoursesController extends Controller
             'programme'          =>     'required',
             'programme_option'   =>     'required',
             'admission_type'     =>     'required',
-            'stream'             =>     'required'
+            'stream'             =>     'required',
+            'course_code'        =>     'required',
+            'credit_hours'       =>     'required'
+
 
         ]);
 
@@ -173,7 +176,7 @@ class CoursesController extends Controller
             // $academicYearId = $academic_year->id;
             //dd($programOptionId,$programId,$academicYearId);
             $semester_reg_course = $this->semester_reg_course->create([
-                'id'               =>       $regcourseRandom,
+//                'id'               =>       $regcourseRandom,
                 'course_name'       =>      $request->course_name,
                 'semester'          =>      $request->semester,
                 'level'             =>      $request->level,
@@ -181,7 +184,9 @@ class CoursesController extends Controller
                 'stream'            =>      $request->stream,
                 'programeOption'  =>        $request->programme_option,
                 'program'         =>        $request->programme,
-                'academicYear'    =>        $request->academic_year
+                'academicYear'    =>        $request->academic_year,
+                'course_code'        =>     $request->course_code,
+                'credit_hours'       =>     $request->course_credit
             ]);
 
             // $semesterRegcourseId = $semester_reg_course->id;

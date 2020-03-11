@@ -25,14 +25,17 @@ class CourseRegistrationController extends Controller
         $studentAcademicYear = RegisteredCourse::where('studentid',$currentStudent)->value('academic_year');
         $studentLevel = RegisteredCourse::where('studentid',$currentStudent)->value('level');
         $studentSemester = RegisteredCourse::where('studentid',$currentStudent)->value('semester');
+        $student_course_code = RegisteredCourse::where('studentid',$currentStudent)->value('course_code');
+        $student_credit_hours = RegisteredCourse::where('studentid',$currentStudent)->value('credit_hours');
+
 
         #step2: verify and select the required coreses to display
         $matchFields = ['semester' => $studentSemester, 'level' => $studentLevel, 'programeOption' => $studentProgrammeOption,
-                    'program' => $studentProgramme, 'academicYear' => $studentAcademicYear];
+                    'program' => $studentProgramme, 'academicYear' => $studentAcademicYear, 'course_code' => $student_course_code,'academicYear' => $student_credit_hours];
 
             $course = SemesterRegcourse::where($matchFields)->get();
             return view('frontend.courseRegistration.index',compact('course'));
-            
+
         // $studentCourses = SemesterRegcourse::all();
         // foreach($studentCourses as $studentCourse)
         // {

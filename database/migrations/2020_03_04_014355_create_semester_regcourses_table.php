@@ -14,7 +14,8 @@ class CreateSemesterRegcoursesTable extends Migration
     public function up()
     {
         Schema::create('semester_regcourses', function (Blueprint $table) {
-            $table->string('id')->primary();
+//            $table->string('id')->primary();
+            $table->bigIncrements('course_code');
             $table->string('course_name');
             $table->string('semester');
             $table->string('level');
@@ -23,7 +24,10 @@ class CreateSemesterRegcoursesTable extends Migration
             $table->string('programeOption');
             $table->string('program');
             $table->string('academicYear');
-    
+            $table->string('credit_hours');
+
+
+
             #$table->foreign('programeOptionId')->references('id')->on('program_options')->onUpdate('cascade')->onDelete('cascade');
             #$table->foreign('programId')->references('id')->on('programs')->onUpdate('cascade')->onDelete('cascade');
             #$table->foreign('academicYearId')->references('id')->on('academic_years')->onUpdate('cascade')->onDelete('cascade');
