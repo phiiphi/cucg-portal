@@ -25,6 +25,7 @@ class CoursesController extends Controller
         $this->program_option      = new ProgramOption();
         $this->academic_year       = new AcademicYear();
         $this->course              = new Course();
+
     }
 
     #IMPORT CSV FILE INTO DATABASE
@@ -32,6 +33,13 @@ class CoursesController extends Controller
     {
         return view('backend.courses.add_courses');
     }
+
+    public function uploadcsvfile()
+    {
+        return view('backend.courses.upload_csv');
+    }
+
+
 
     public function exportFile(Request $request)
     {
@@ -59,7 +67,43 @@ class CoursesController extends Controller
             }
 
             $submit = new Course();
+
             $submit->importToDatabase();
+
+            Alert::toast('data queued for importing', 'success');
+            return redirect()->route('courses.add');
+        }
+    }
+
+
+
+    public function exportCsvOption(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|max:10000|mimes:xlsx,xls,csv,txt'
+        ]);
+
+        if ($validator->fails()) {
+            # display error messages
+            Alert::toast('The file format is not supported','error');
+            return redirect()->back();
+        } else {
+            #retrieve file
+            $file = file($request->file->getRealPath());
+            $extension = $request->file->getClientOriginalExtension();
+            $data = array_slice($file,1);
+
+            #break the huge data into parts
+            $parts = (array_chunk($data, 1000));
+
+            foreach($parts as $index=>$part)
+            {
+                $fileName = resource_path('pending-add-csv-option/'.date('y-m-d-H-i-s').$index.'.'.$extension);
+                file_put_contents($fileName,$part);
+            }
+
+            $submitOp = new SemesterRegcourse();
+            $submitOp->SubmitToDatabase();
 
             Alert::toast('data queued for importing', 'success');
             return redirect()->route('courses.add');
@@ -101,10 +145,10 @@ class CoursesController extends Controller
            // $progOptRandom = IdGenerator::generate(['table' => 'program_options', 'length' => 9, 'prefix'=>'PO-']);
             // DB::table('program_options')->insert(['ProgramOpt_id' => $progOptRandom]);
             // $program_option = $this->program_option->create([
-            //     'id'                =>      $progOptRandom, 
+            //     'id'                =>      $progOptRandom,
             //     'Option_name'       =>      $request->programme_option
             // ]);
-            
+
             #assign random id
            // $progRandom = IdGenerator::generate(['table' => 'programs', 'length' => 8, 'prefix'=>'P-']);
             // DB::table('program_options')->insert(['ProgramOpt_id' => $progRandom]);
@@ -112,7 +156,7 @@ class CoursesController extends Controller
             //     'id'               =>   $progRandom,
             //     'program_name'     =>   $request->programme,
             // ]);
-        
+
             #assign random id
            // $acaRandom = IdGenerator::generate(['table' => 'academic_years', 'length' => 9, 'prefix'=>'AY-']);
             // DB::table('program_options')->insert(['ProgramOpt_id' => $acaRandom]);
@@ -121,7 +165,7 @@ class CoursesController extends Controller
             //     'academic_year'         => $request->academic_year
             // ]);
             //$academic_year->academicyear_id = $acaRandom;
-            
+
             #assign random id
             $regcourseRandom = IdGenerator::generate(['table' => 'semester_regcourses', 'length' => 9, 'prefix'=>'RC-']);
             // $programOptionId =$program_option->id;
@@ -139,13 +183,13 @@ class CoursesController extends Controller
                 'program'         =>        $request->programme,
                 'academicYear'    =>        $request->academic_year
             ]);
-            
+
             // $semesterRegcourseId = $semester_reg_course->id;
             // $course = $this->course->create([
             //     'semesterRegcourse_id' => $semesterRegcourseId
             // ]);
 
-            if ( $semester_reg_course) 
+            if ( $semester_reg_course)
             {
                 DB::commit();
                 Alert::toast('Successfully Uploaded','success');
@@ -161,7 +205,7 @@ class CoursesController extends Controller
         //     DB::rollBack();
         //     Alert:toast('Sorry! couldnt create tables','error');
         //     return redirect()->back();
-            
+
         // }
 
     }

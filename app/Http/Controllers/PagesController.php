@@ -43,10 +43,21 @@ class PagesController extends Controller
 
     public function home()
     {
-        $student    = Auth::user();
-        $activities = AcademicCalendar::all();
-        //Alert::toast('Great job! login successfully','success');
-        return view('frontend.pages.home', compact('activities','student'));
+        $authCurrentStudent = Session::get('currentUserId');
+
+        if (!$authCurrentStudent){
+            Alert::toast('Please Register to View','error');
+            return redirect()->route('pages.signup');
+
+        }else{
+            $student    = Auth::user();
+            $activities = AcademicCalendar::all();
+            //Alert::toast('Great job! login successfully','success');
+            return view('frontend.pages.home', compact('activities','student'));
+
+        }
+
+
 
     }
 
@@ -116,12 +127,12 @@ class PagesController extends Controller
             'index_number'       =>     'required|min:13|max:13|exists:registry_biodatas,Student Number',
             'password'           =>     'required|min:8|max:100',
         ]);
-        
+
         //$studentID =  Student::where('index_number',$request->index_number)->value('index_number');
-       
+
         $password =  RegisteredCourse::where('studentid',$request->index_number)->value('password');
         $customPassword = new CustompasswordClass();
-        if($customPassword->convertPasswordToHash($request->password) == $password )
+        if($customPassword->convertPasswordToHash($request->password) === $password )
         {
             $studentID =  RegisteredCourse::where('studentid',$request->index_number)->value('studentid');
             // dd($studentID);

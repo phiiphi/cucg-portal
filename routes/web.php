@@ -56,7 +56,11 @@ Route::post('/admin/importcalendar', 'SemesterscalenderAdminController@exportFil
 Route::get('/load-activities', 'ActivityController@loadActivities')->name('routeLoadActivities');
 
 Route::get('/admin/addcourses','CoursesController@importFile' )->name('courses.add');
+Route::get('/admin/uploadcsvfile','CoursesController@uploadcsvfile' )->name('course.addcsv');
+
 Route::post('/admin/importcourse','CoursesController@exportFile' )->name('courses.export');
+Route::post('/admin/importsemcourse','CoursesController@exportCsvOption' )->name('courses.exportcsv');
+
 Route::get('/admin/addsemestercourses', 'CoursesController@createSemesterCourses')->name('semestercourse.add');
 Route::post('/processcourse', 'CoursesController@processSemesterCourses')->name('semestercourses.process');
 
