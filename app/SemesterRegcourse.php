@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Jobs\UploadCsv;
 use Illuminate\Database\Eloquent\Model;
 
 class SemesterRegcourse extends Model
@@ -13,6 +14,17 @@ class SemesterRegcourse extends Model
     protected $fillable = [
         'id','course_name', 'semester', 'programeOption', 'program','academicYear','level','admission_type','stream'
     ];
+
+    public function SubmitToDatabase()
+    {
+        $path = resource_path('pending-course-files/*.csv');
+        $files = glob($path);
+
+        foreach($files as $file)
+        {
+            UploadCsv::dispatch($file);
+        }
+    }
 
     #establishing relationships
     public function Course()
