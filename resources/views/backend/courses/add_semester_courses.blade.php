@@ -6,7 +6,7 @@
         <div class="card-header border-0">
             <div class="custom-title-wrap bar-primary">
                 <div class="custom-title">Add Semester Courses</div>
-                <button href="#" class="btn btn-primary float-right"> Upload a Csv file</button>
+                <a href="{{route('course.addcsv')}}" class="btn btn-primary float-right"> Upload a Csv file</a>
             </div>
         </div>
             <div class="card-body">

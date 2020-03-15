@@ -2,15 +2,17 @@
 
 namespace App;
 
-use App\Jobs\UploadCsvOption;
 use Illuminate\Database\Eloquent\Model;
+use App\Jobs\UploadCsvOption;
 
 class SemesterRegcourse extends Model
 {
     protected $table = 'semester_regcourses';
+    protected $primaryKey = 'course_code';
+    public $incrementing = false;
 
     protected $fillable = [
-        'course_code', 'course_name', 'semester', 'programeOption', 'program','academicYear','level','admission_type','stream', 'credit_hours'
+        'course_code','course_name','credit_hours', 'semester', 'programeOption', 'program','academicYear','level','admission_type','stream'
     ];
 
     public function SubmitToDatabase()

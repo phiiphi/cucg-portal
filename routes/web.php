@@ -30,6 +30,7 @@ Route::post('/verified', 'VerifyController@postVerify')->name('pages.verified');
 
 /* Course Registration Routes */
 Route::get('/home/registration', 'CourseRegistrationController@index')->name('courseRegistration');
+Route::get('/home/registration/payment', 'CourseRegistrationController@payment')->name('courseRegistration.payment');
 #Route::get('/home/registration/registrationDetails', 'CourseRegistrationController@registrationDetails')->name('courseRegistration.forms.registrationDetails');
 #Route::get('/home/registration/academicInfo', 'CourseRegistrationController@academicInfo')->name('courseRegistration.forms.academicInfo');
 /* Semester Calendar Routes */

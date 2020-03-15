@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Course;
 use App\SemesterRegcourse;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -42,17 +41,17 @@ class UploadCsvOption implements ShouldQueue
             foreach($data as $row)
             {
                 SemesterRegcourse::updateOrCreate([
-                    'course_code' => $row[0]
-                ], [
+                    'course_code'      =>       $row[0]
+                ],[
                     'course_name'      =>       $row[1],
-                    'semester'         =>       $row[2],
-                    'programOption'    =>       $row[3],
-                    'program'          =>       $row[4],
-                    'academicYear'     =>       $row[5],
-                    'level'            =>       $row[6],
-                    'admission_type'   =>       $row[7],
-                    'stream'           =>       $row[8]
-
+                    'credit_hours'     =>       $row[2],
+                    'semester'         =>       $row[3],
+                    'level'            =>       $row[4],
+                    'admission_type'   =>       $row[5],
+                    'stream'           =>       $row[6],
+                    'programeOption'   =>       $row[7],
+                    'program'          =>       $row[8],
+                    'academicYear'     =>       $row[9]
                 ]);
             }
 

@@ -88,7 +88,7 @@ class SemesterscalenderAdminController extends Controller
             $submit->importToDatabase();
 
             Alert::toast('data queued for importing', 'success');
-            return redirect()->route('courses.add');
+            return redirect()->route('admin.calendar.create');
         }
     }
 
