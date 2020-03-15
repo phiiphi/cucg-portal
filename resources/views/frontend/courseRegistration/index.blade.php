@@ -62,7 +62,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class='text-center'>
+            <div class='text-center mb-5'>
             <a href="{{route('courseRegistration.payment')}}" class="btn btn-primary" > proceed to register courses</a>
             </div>
             </div>

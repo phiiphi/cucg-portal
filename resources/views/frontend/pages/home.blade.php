@@ -150,7 +150,7 @@
                     @foreach ($activities as $activity)
                       <li class="time-dot-danger">
                           <div class="base-timeline-info">
-                              <a href="#" class="text-danger">{{$activity->week}}</a>
+                              <a href="#" class="text-danger">Week{{$activity->week}}</a>
                               {{$activity->activity}}
                           </div>
                           <small class="text-muted">
@@ -160,6 +160,7 @@
                       </li>
                       @endforeach
                   </ul>
+                  {{$activities->links()}}
                   @endif
               </div>
           </div>

@@ -51,7 +51,7 @@ class PagesController extends Controller
 
         }else{
             $student    = Auth::user();
-            $activities = AcademicCalendar::all();
+            $activities = AcademicCalendar::paginate(2);
             //Alert::toast('Great job! login successfully','success');
             return view('frontend.pages.home', compact('activities','student'));
 
